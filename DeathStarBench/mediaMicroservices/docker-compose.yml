@@ -3,6 +3,8 @@ services:
 #   Enables resolving container hostnames from host machine
   dns-media:
     image: defreitas/dns-proxy-server
+    cap_add:
+      - SYS_PTRACE
     volumes:
       - /opt/dns-proxy-server/conf:/app/conf
       - /var/run/docker.sock:/var/run/docker.sock
@@ -11,6 +13,8 @@ services:
   unique-id-service:
     image: yg397/media-microservices
     hostname: unique-id-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10001:9090
     restart: always
@@ -19,6 +23,8 @@ services:
   movie-id-service:
     image: yg397/media-microservices
     hostname: movie-id-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10002:9090
     restart: always
@@ -27,6 +33,8 @@ services:
   movie-id-mongodb:
     image: mongo
     hostname: movie-id-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27018:27017
     restart: always
@@ -34,6 +42,8 @@ services:
   movie-id-memcached:
     image: memcached
     hostname: movie-id-memcached
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 11212:11211
     restart: always
@@ -41,6 +51,8 @@ services:
   text-service:
     image: yg397/media-microservices
     hostname: text-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10003:9090
     restart: always
@@ -49,6 +61,8 @@ services:
   rating-service:
     image: yg397/media-microservices
     hostname: rating-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10004:9090
     restart: always
@@ -57,6 +71,8 @@ services:
   rating-redis:
     image: redis
     hostname: rating-redis
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 6382:6379
     restart: always
@@ -64,6 +80,8 @@ services:
   user-service:
     image: yg397/media-microservices
     hostname: user-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10005:9090
     restart: always
@@ -72,6 +90,8 @@ services:
   user-mongodb:
     image: mongo
     hostname: user-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27019:27017
     restart: always
@@ -79,6 +99,8 @@ services:
   user-memcached:
     image: memcached
     hostname: user-memcached
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 11213:11211
     restart: always
@@ -86,6 +108,8 @@ services:
   compose-review-service:
     image: yg397/media-microservices
     hostname: compose-review-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10006:9090
     restart: always
@@ -94,6 +118,8 @@ services:
   compose-review-memcached:
     image: memcached
     hostname: compose-review-memcached
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 11214:11211
     restart: always
@@ -101,6 +127,8 @@ services:
   review-storage-service:
     image: yg397/media-microservices
     hostname: review-storage-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10007:9090
     restart: always
@@ -109,6 +137,8 @@ services:
   review-storage-mongodb:
     image: mongo
     hostname: review-storage-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27020:27017
     restart: always
@@ -116,6 +146,8 @@ services:
   review-storage-memcached:
     image: memcached
     hostname: review-storage-memcached
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 11215:11211
     restart: always
@@ -123,6 +155,8 @@ services:
   user-review-service:
     image: yg397/media-microservices
     hostname: user-review-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10008:9090
     restart: always
@@ -131,6 +165,8 @@ services:
   user-review-mongodb:
     image: mongo
     hostname: user-review-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27021:27017
     restart: always
@@ -138,6 +174,8 @@ services:
   user-review-redis:
     image: redis
     hostname: user-review-redis
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 6381:6379
     restart: always
@@ -145,6 +183,8 @@ services:
   movie-review-service:
     image: yg397/media-microservices
     hostname: movie-review-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10009:9090
     restart: always
@@ -153,6 +193,8 @@ services:
   movie-review-mongodb:
     image: mongo
     hostname: movie-review-mongodb
+    cap_add:
+      - SYS_PTRACE
     ports:
       - 27022:27017
     restart: always
@@ -160,6 +202,8 @@ services:
   movie-review-redis:
     image: redis
     hostname: movie-review-redis
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 6380:6379
     restart: always
@@ -167,6 +211,8 @@ services:
   nginx-web-server:
     image: yg397/openresty-thrift:xenial
     hostname: nginx-thrift
+    cap_add:
+      - SYS_PTRACE
     ports:
       - 8080:8080
     restart: always
@@ -179,6 +225,8 @@ services:
   cast-info-service:
     image: yg397/media-microservices
     hostname: cast-info-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10010:9090
     restart: always
@@ -187,6 +235,8 @@ services:
   cast-info-mongodb:
     image: mongo
     hostname: cast-info-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27024:27017
     restart: always
@@ -194,6 +244,8 @@ services:
   cast-info-memcached:
     image: memcached
     hostname: cast-info-memcached
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 11219:11211
     restart: always
@@ -201,6 +253,8 @@ services:
   plot-service:
     image: yg397/media-microservices
     hostname: plot-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10011:9090
     restart: always
@@ -209,6 +263,8 @@ services:
   plot-mongodb:
     image: mongo
     hostname: plot-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27025:27017
     restart: always
@@ -216,6 +272,8 @@ services:
   plot-memcached:
     image: memcached
     hostname: plot-memcached
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 11220:11211
     restart: always
@@ -223,6 +281,8 @@ services:
   movie-info-service:
     image: yg397/media-microservices
     hostname: movie-info-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10012:9090
     restart: always
@@ -231,6 +291,8 @@ services:
   movie-info-mongodb:
     image: mongo
     hostname: movie-info-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27026:27017
     restart: always
@@ -238,6 +300,8 @@ services:
   movie-info-memcached:
     image: memcached
     hostname: movie-info-memcached
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 11221:11211
     restart: always

@@ -2,6 +2,8 @@ version: "2"
 services:
   consul:
     image: consul:latest
+    cap_add:
+      - SYS_PTRACE
     ports:
       - "8300:8300"
       - "8400:8400"
@@ -12,6 +14,8 @@ services:
   frontend:
     build: .
     image: hotel_reserv_frontend_single_node
+    cap_add:
+      - SYS_PTRACE
     entrypoint: frontend
     container_name: 'hotel_reserv_frontend'
     ports:
@@ -24,6 +28,8 @@ services:
   profile:
     build: .
     image: hotel_reserv_profile_single_node
+    cap_add:
+      - SYS_PTRACE
     entrypoint: profile
     container_name: 'hotel_reserv_profile'
     ports:
@@ -38,6 +44,8 @@ services:
   search:
     build: .
     image: hotel_reserv_search_single_node
+    cap_add:
+      - SYS_PTRACE
     entrypoint: search
     container_name: 'hotel_reserv_search'
     ports:
@@ -53,6 +61,8 @@ services:
   geo:
     build: .
     image: hotel_reserv_geo_single_node
+    cap_add:
+      - SYS_PTRACE
     entrypoint: geo
     container_name: 'hotel_reserv_geo'
     ports:
@@ -66,6 +76,8 @@ services:
   rate:
     build: .
     image: hotel_reserv_rate_single_node
+    cap_add:
+      - SYS_PTRACE
     entrypoint: rate
     container_name: 'hotel_reserv_rate'
     ports:
@@ -80,6 +92,8 @@ services:
   recommendation:
     build: .
     image: hotel_reserv_recommend_single_node
+    cap_add:
+      - SYS_PTRACE
     entrypoint: recommendation
     container_name: 'hotel_reserv_recommendation'
     ports:
@@ -93,6 +107,8 @@ services:
   user:
     build: .
     image: hotel_reserv_user_single_node
+    cap_add:
+      - SYS_PTRACE
     entrypoint: user
     container_name: 'hotel_reserv_user'
     ports:
@@ -106,6 +122,8 @@ services:
   reservation:
     build: .
     image: hotel_reserv_rsv_single_node
+    cap_add:
+      - SYS_PTRACE
     entrypoint: reservation
     container_name: 'hotel_reserv_reservation'
     ports:
@@ -134,6 +152,8 @@ services:
 
   memcached-rate:
     image: memcached
+    cap_add:
+      - SYS_PTRACE
     # hostname: user-memcached
     container_name: 'hotel_reserv_rate_mmc'
     ports:
@@ -149,6 +169,8 @@ services:
 
   memcached-profile:
     image: memcached
+    cap_add:
+      - SYS_PTRACE
     # hostname: user-memcached
     container_name: 'hotel_reserv_profile_mmc'
     ports:
@@ -164,6 +186,8 @@ services:
 
   memcached-reserve:
     image: memcached
+    cap_add:
+      - SYS_PTRACE
     # hostname: user-memcached
     container_name: 'hotel_reserv_reservation_mmc'
     ports:
@@ -179,6 +203,8 @@ services:
 
   mongodb-geo:
     image: mongo
+    cap_add:
+      - SYS_PTRACE
     container_name: 'hotel_reserv_geo_mongo'
     # hostname: geo-db
     ports:
@@ -190,6 +216,8 @@ services:
 
   mongodb-profile:
     image: mongo
+    cap_add:
+      - SYS_PTRACE
     container_name: 'hotel_reserv_profile_mongo'
     hostname: profile-db
     ports:
@@ -201,6 +229,8 @@ services:
 
   mongodb-rate:
     image: mongo
+    cap_add:
+      - SYS_PTRACE
     container_name: 'hotel_reserv_rate_mongo'
     hostname: rate-db
     ports:
@@ -212,6 +242,8 @@ services:
 
   mongodb-recommendation:
     image: mongo
+    cap_add:
+      - SYS_PTRACE
     hostname: recommendation-db
     container_name: 'hotel_reserv_recommendation_mongo'
     ports:
@@ -223,6 +255,8 @@ services:
     
   mongodb-reservation:
     image: mongo
+    cap_add:
+      - SYS_PTRACE
     container_name: 'hotel_reserv_reservation_mongo'
     hostname: reservation-db
     ports:
@@ -234,6 +268,8 @@ services:
 
   mongodb-user:
     image: mongo
+    cap_add:
+      - SYS_PTRACE
     container_name: 'hotel_reserv_user_mongo'
     hostname: user-db
     ports:

@@ -1,3 +1,0 @@
-FROM yg397/social-network-microservices
-
-RUN curl

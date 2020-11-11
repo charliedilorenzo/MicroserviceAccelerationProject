@@ -13,6 +13,8 @@ services:
   social-graph-service:
     image: yg397/social-network-microservices
     hostname: social-graph-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10000:9090
     restart: always
@@ -21,6 +23,8 @@ services:
   social-graph-mongodb:
     image: mongo
     hostname: social-graph-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27018:27017
     restart: always
@@ -28,19 +32,19 @@ services:
   social-graph-redis:
     image: redis
     hostname: social-graph-redis
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 6380:6379
     restart: always
 
   write-home-timeline-service:
     image: yg397/social-network-microservices
-    pid: "host"
+    hostname: write-home-timeline-service
     cap_add:
       - SYS_PTRACE
-      - SYS_ADMIN
-#    volumes:
-#      - ./vtune:/social-network-microservices
-    hostname: write-home-timeline-service
+    #    volumes:
+    #      - ./vtune:/social-network-microservices
     restart: always
     entrypoint: WriteHomeTimelineService
     depends_on:
@@ -49,6 +53,8 @@ services:
   write-home-timeline-rabbitmq:
     image: rabbitmq
     hostname: write-home-timeline-rabbitmq
+    cap_add:
+      - SYS_PTRACE
     environment:
       RABBITMQ_ERLANG_COOKIE: "WRITE-HOME-TIMELINE-RABBITMQ"
       RABBITMQ_DEFAULT_VHOST: "/"
@@ -60,6 +66,8 @@ services:
   home-timeline-redis:
     image: redis
     hostname: home-timeline-redis
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 6381:6379
     restart: always
@@ -67,6 +75,8 @@ services:
   compose-post-service:
     image: yg397/social-network-microservices
     hostname: compose-post-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10001:9090
     restart: always
@@ -77,6 +87,8 @@ services:
   compose-post-redis:
     image: redis
     hostname: compose-post-redis
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 6382:6379
     restart: always
@@ -84,6 +96,8 @@ services:
   post-storage-service:
     image: yg397/social-network-microservices
     hostname: post-storage-service
+    cap_add:
+      - SYS_PTRACE
     ports:
       - 10002:9090
     restart: always
@@ -92,6 +106,8 @@ services:
   post-storage-memcached:
     image: memcached
     hostname: post-storage-memcached
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 11212:11211
     restart: always
@@ -99,6 +115,8 @@ services:
   post-storage-mongodb:
     image: mongo
     hostname: post-storage-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27019:27017
     restart: always
@@ -106,6 +124,8 @@ services:
   user-timeline-service:
     image: yg397/social-network-microservices
     hostname: user-timeline-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10003:9090
     restart: always
@@ -114,6 +134,8 @@ services:
   user-timeline-redis:
     image: redis
     hostname: user-timeline-redis
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 6383:6379
     restart: always
@@ -121,6 +143,8 @@ services:
   user-timeline-mongodb:
     image: mongo
     hostname: user-timeline-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27020:27017
     restart: always
@@ -128,6 +152,8 @@ services:
   url-shorten-service:
     image: yg397/social-network-microservices
     hostname: url-shorten-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10004:9090
     restart: always
@@ -136,6 +162,8 @@ services:
   url-shorten-memcached:
     image: memcached
     hostname: url-shorten-memcached
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 11213:11211
     restart: always
@@ -143,6 +171,8 @@ services:
   url-shorten-mongodb:
     image: mongo
     hostname: url-shorten-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27021:27017
     restart: always
@@ -150,6 +180,8 @@ services:
   user-service:
     image: yg397/social-network-microservices
     hostname: user-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10005:9090
     restart: always
@@ -158,6 +190,8 @@ services:
   user-memcached:
     image: memcached
     hostname: user-memcached
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 11214:11211
     restart: always
@@ -165,6 +199,8 @@ services:
   user-mongodb:
     image: mongo
     hostname: user-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27023:27017
     restart: always
@@ -172,6 +208,8 @@ services:
   media-service:
     image: yg397/social-network-microservices
     hostname: media-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10006:9090
     restart: always
@@ -180,6 +218,8 @@ services:
   media-memcached:
     image: memcached
     hostname: media-memcached
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 11215:11211
     restart: always
@@ -187,6 +227,8 @@ services:
   media-mongodb:
     image: mongo
     hostname: media-mongodb
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 27024:27017
     restart: always
@@ -194,6 +236,8 @@ services:
   text-service:
     image: yg397/social-network-microservices
     hostname: text-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10007:9090
     restart: always
@@ -202,6 +246,8 @@ services:
   unique-id-service:
     image: yg397/social-network-microservices
     hostname: unique-id-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10008:9090
     restart: always
@@ -210,6 +256,8 @@ services:
   user-mention-service:
     image: yg397/social-network-microservices
     hostname: user-mention-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10009:9090
     restart: always
@@ -218,6 +266,8 @@ services:
   home-timeline-service:
     image: yg397/social-network-microservices
     hostname: home-timeline-service
+    cap_add:
+      - SYS_PTRACE
 #    ports:
 #      - 10010:9090
     restart: always
@@ -226,6 +276,8 @@ services:
   nginx-thrift:
     image: yg397/openresty-thrift:xenial
     hostname: nginx-thrift
+    cap_add:
+      - SYS_PTRACE
     ports:
       - 8080:8080
     restart: always
@@ -239,6 +291,8 @@ services:
   media-frontend:
     image: yg397/media-frontend:xenial
     hostname: media-frontend
+    cap_add:
+      - SYS_PTRACE
     ports:
       - 8081:8080
     restart: always
