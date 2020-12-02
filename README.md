@@ -7,6 +7,12 @@ Authors: Charlie DiLorenzo, Quintin Degroot, Tyler Haden
 1. ssh onto remote machine
 2. run `run_media_bench.sh` script
     ```
+    sudo ./run_media_benchmark.sh
+    ```
+    
+    or
+    
+    ```
     sudo ./run_media_benchmark.sh \
        -duration=$((60 * 5)) \
        -rate=100 \
@@ -26,6 +32,9 @@ Authors: Charlie DiLorenzo, Quintin Degroot, Tyler Haden
 this if it is not present. It will also run `chmod a+w` to make writable. To 
 change, you must modify both benchmark and copy scripts.
 - To change Vtune collection type, modify benchmark script.
+- You plan on running many iterations of Vtune sequentially, you should leave
+the application containers running the whole time and shutdown at the end.
+You gotta modify the benchmark script.
 
 ### Vtune options
 

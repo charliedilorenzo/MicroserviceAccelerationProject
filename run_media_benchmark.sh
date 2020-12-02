@@ -63,22 +63,23 @@ echo 0>/proc/sys/kernel/perf_event_paranoid
 ##################################################
 
 cd DeathStarBench/mediaMicroservices || exit 1
-echo "Starting services ..."
+echo "[1] Starting services ..."
 sudo docker-compose up -d
+sudo docker-compose logs -f -t >> "$RESULT_DIR/${RESULT_NAME}_application.log" &
 
 
 ##################################################
 # Start Workload
 ##################################################
 
-echo "Starting workload ..."
-(./wrk2/wrk -D exp -L \
+echo "[2] Starting workload ..."
+./wrk2/wrk -D exp -L \
   --threads "$THREADS" \
   --connections "$CONNECTIONS" \
   --duration "$((DURATION + (CUSHION * 2)))" \
   --rate "$RATE" \
   --script ./scripts/media-microservices/compose-review.lua \
-  http://localhost:8080/wrk2-api/review/compose) &
+  http://localhost:8080/wrk2-api/review/compose >> "$RESULT_DIR/${RESULT_NAME}_workload.log" &
 
 # Offset data collection
 sleep $CUSHION
@@ -88,17 +89,16 @@ sleep $CUSHION
 # Start Data Collection
 ##################################################
 
-echo "Starting data collection"
-(sudo vtune -collect memory-access \
+echo "[3] Starting data collection ..."
+sudo vtune -collect memory-access \
   -analyze-system \
   -d "$DURATION" \
-  -result-dir="$RESULT_DIR/$RESULT_NAME") &
+  -result-dir="$RESULT_DIR/$RESULT_NAME"
 
-wait
 
 ##################################################
 # Clean Up
 ##################################################
 
-echo "DONE! Stopping services"
+echo "[4] DONE! Stopping services"
 sudo docker-compose down
