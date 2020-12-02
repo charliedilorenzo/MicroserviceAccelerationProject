@@ -4,18 +4,10 @@
 # Setup
 ##################################################
 
-if [ -z "${USERNAME}" ]; then
-  echo "You need to set the environment variable \$USERNAME to your school eid
-
-  export USERNAME=abc123
-"
-  exit 1
-fi
-
 # constants
 # seconds to run workload before and after vtune
 CUSHION=10
-RESULT_DIR=/bigtemp/$USERNAME
+RESULT_DIR=/bigtemp/$(logname)
 
 # default arguments
 DURATION=60
@@ -44,7 +36,7 @@ for var in "$@"; do
     ;;
   *)
     echo "Run Media Benchmark - Usage:
-sudo ./run_media_benchmark.sh -duration=60 -threads=10 -rate=100 -RESULT_DIR=/bigtemp/\$USER/vtune -name=bob"
+sudo ./run_media_benchmark.sh -duration=60 -threads=10 -rate=100 -RESULT_DIR=/bigtemp/\$(logname)/vtune -name=bob"
     exit 0
     ;;
   esac
@@ -58,6 +50,10 @@ if [[ ! -d "$RESULT_DIR" ]]; then
   echo "The result directory ($RESULT_DIR) doesn't yet exist, creating it now"
   mkdir -p "$RESULT_DIR"
 fi
+
+echo $RESULT_DIR
+
+exit 0
 
 # Ensure writability
 chmod a+w "$RESULT_DIR"
@@ -86,7 +82,7 @@ echo "[2] Starting workload ..."
   --connections "$CONNECTIONS" \
   --duration "$((DURATION + (CUSHION * 2)))" \
   --rate "$RATE" \
-  --script ./scripts/media-microservices/compose-review.lua \
+  --script ./wrk2/scripts/media-microservices/compose-review.lua \
   http://localhost:8080/wrk2-api/review/compose >> "$RESULT_DIR/${RESULT_NAME}_workload.log" &
 
 # Offset data collection

@@ -27,9 +27,9 @@ Authors: Charlie DiLorenzo, Quintin Degroot, Tyler Haden
 
 ### Notes
 
-- You will need to specify you school computing id as env var `$USERNAME` on both
-systems. 
-- The benchmark script stores the results in `/bigtemp/$USER`. It will create
+- You will need to specify you school computing id as env var `$USERNAME` on 
+your local machine. The server uses `$(logname)`.
+- The benchmark script stores the results in `/bigtemp/$(logname)`. It will create
 this if it is not present. It will also run `chmod a+w` to make writable. To 
 change, you must modify both benchmark and copy scripts.
 - To change Vtune collection type, modify benchmark script.
