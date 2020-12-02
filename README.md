@@ -14,7 +14,7 @@ Authors: Charlie DiLorenzo, Quintin Degroot, Tyler Haden
     
     ```
     sudo ./run_media_benchmark.sh \
-       -duration=$((60 * 5)) \
+       -duration=60 \
        -rate=100 \
        -connections=50 \
        -threads=10

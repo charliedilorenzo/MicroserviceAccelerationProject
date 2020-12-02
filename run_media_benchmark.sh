@@ -52,7 +52,7 @@ if [[ ! -d "$RESULT_DIR" ]]; then
 fi
 
 # Ensure writability
-chmod a+w "$RESULT_DIR"
+sudo chmod a+w "$RESULT_DIR"
 
 # This enables perf to run without drivers
 echo 0>/proc/sys/kernel/perf_event_paranoid
