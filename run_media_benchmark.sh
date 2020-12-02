@@ -51,10 +51,6 @@ if [[ ! -d "$RESULT_DIR" ]]; then
   mkdir -p "$RESULT_DIR"
 fi
 
-echo $RESULT_DIR
-
-exit 0
-
 # Ensure writability
 chmod a+w "$RESULT_DIR"
 
