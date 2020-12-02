@@ -6,7 +6,7 @@
 
 # constants
 # seconds to run workload before and after vtune
-CUSHION=10
+CUSHION=5
 RESULT_DIR=/bigtemp/$(logname)
 
 # default arguments
@@ -36,7 +36,7 @@ for var in "$@"; do
     ;;
   *)
     echo "Run Media Benchmark - Usage:
-sudo ./run_media_benchmark.sh -duration=60 -threads=10 -rate=100 -RESULT_DIR=/bigtemp/\$(logname)/vtune -name=bob"
+sudo ./run_media_benchmark.sh -duration=60 -threads=10 -rate=100  -name=bob"
     exit 0
     ;;
   esac
