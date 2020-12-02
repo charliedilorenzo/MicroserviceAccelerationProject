@@ -4,10 +4,18 @@
 # Setup
 ##################################################
 
+if [ -z "${USERNAME}" ]; then
+  echo "You need to set the environment variable \$USERNAME to your school eid
+
+  export USERNAME=abc123
+"
+  exit 1
+fi
+
 # constants
 # seconds to run workload before and after vtune
 CUSHION=10
-RESULT_DIR=/bigtemp/$USER
+RESULT_DIR=/bigtemp/$USERNAME
 
 # default arguments
 DURATION=60

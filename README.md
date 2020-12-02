@@ -21,13 +21,14 @@ Authors: Charlie DiLorenzo, Quintin Degroot, Tyler Haden
     ```
 3. sync results to local machine
     ```
-    export $USERNAME=tjh8ap
     ./copy_results_to_local.sh
     ```
 4. import into Vtune gui
 
 ### Notes
 
+- You will need to specify you school computing id as env var `$USERNAME` on both
+systems. 
 - The benchmark script stores the results in `/bigtemp/$USER`. It will create
 this if it is not present. It will also run `chmod a+w` to make writable. To 
 change, you must modify both benchmark and copy scripts.
