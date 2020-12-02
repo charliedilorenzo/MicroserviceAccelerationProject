@@ -59,7 +59,13 @@ function _M.ComposeReview()
       _StrIsEmpty(post.rating)) then
     ngx.status = ngx.HTTP_BAD_REQUEST
     ngx.say("Incomplete arguments")
-    ngx.log(ngx.ERR, "Incomplete arguments")
+    ngx.log(ngx.ERR, "Incomplete arguments, " ..
+        post.title .. ", " ..
+        post.text .. ", " ..
+        post.username .. ", " ..
+        post.password .. ", " ..
+        post.rating
+    )
     ngx.exit(ngx.HTTP_BAD_REQUEST)
   end
 

@@ -4,34 +4,32 @@ Authors: Charlie DiLorenzo, Quintin Degroot, Tyler Haden
 
 ## Instructions 
 
-### Pre
+1. ssh onto remote machine
+2. run `run_media_bench.sh` script
+    ```
+    sudo ./run_media_benchmark.sh \
+       -duration=$((60 * 5)) \
+       -rate=100 \
+       -connections=50 \
+       -threads=10
+    ```
+3. sync results to local machine
+    ```
+    export $USERNAME=tjh8ap
+    ./copy_results_to_local.sh
+    ```
+4. import into Vtune gui
 
-```
-echo 0>/proc/sys/kernel/perf_event_paranoid
-```
+### Notes
 
-### Start Media Microservices Containers
+- The benchmark script stores the results in `/bigtemp/$USER`. It will create
+this if it is not present. It will also run `chmod a+w` to make writable. To 
+change, you must modify both benchmark and copy scripts.
+- To change Vtune collection type, modify benchmark script.
 
-```
-cd ~/MicroserviceAccelerationProject/DeathStarBench/mediaMicroservices/
-sudo docker-compose up
-```
+### Vtune options
 
-### Start Workload
-
-```
-./wrk -D exp -L \
-  --threads 10 \
-  --connections 50 \
-  --duration 120 \
-  --rate 100 \
-  --script ./scripts/media-microservices/compose-review.lua \
-  http://localhost:8080/wrk2-api/review/compose 
-```
-
-### Run Vtune Data Collector
-
-| `-collect` options |
+| `-collect <option>` |
 | ---------------- |
 | performance-snapshot |
 | hotspots |
@@ -53,44 +51,3 @@ sudo docker-compose up
 | tsx-exploration |
 | tsx-hotspots |
 | sgx-hotspots |
-
-
-```
-sudo vtune -collect hotspots \
-    -knob sampling-mode=hw \
-    -analyze-system \
-    -d 60 
-```
-
-or
-
-```
-sudo vtune -collect memory-access \
-    -analyze-system \
-    -d 60 
-```
-
-#### Target Specific Container
-
-```
-sudo docker ps
-sudo docker top <container name>
-sudo vtune -collect memory-consumption \
-    -knob sampling-mode=hw \
-    -analyze-system \
-    -d 60 \
-    -target-pid 22785
-```
-
-### Copy To Local Machine
-
-```
-DATA=r003macc
-
-USERNAME=
-REMOTE_PATH=~/profiler_work
-
-scp -r $USERNAME@:portal.cs.virginia.edu/$REMOTE_PATH/$DATA .
-```
-
-Then import to a Vtune GUI project.

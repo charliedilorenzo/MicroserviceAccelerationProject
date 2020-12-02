@@ -1,0 +1,101 @@
+#! /bin/bash
+
+##################################################
+# SETUP
+##################################################
+
+# constants
+# seconds to run workload before and after vtune
+CUSHION=10
+RESULT_DIR=/bigtemp/$USER
+
+# default arguments
+DURATION=60
+THREADS=10
+CONNECTIONS=50
+RATE=100
+RESULT_NAME=""
+
+# parse arguments
+for var in "$@"; do
+  case $var in
+  -duration=*)
+    DURATION="${var#*=}"
+    ;;
+  -threads=*)
+    THREADS="${var#*=}"
+    ;;
+  -connections=*)
+    CONNECTIONS="${var#*=}"
+    ;;
+  -rate=*)
+    RATE="${var#*=}"
+    ;;
+  -name=*)
+    RESULT_NAME="${var#*=}"
+    ;;
+  *)
+    echo "Run Media Benchmark - Usage:
+sudo ./run_media_benchmark.sh -duration=60 -threads=10 -rate=100 -RESULT_DIR=/bigtemp/\$USER/vtune -name=bob"
+    exit 0
+    ;;
+  esac
+done
+
+if [ -z "${RESULT_NAME}" ]; then
+  RESULT_NAME="vtune_result_$(date +%s)_duration$DURATION"
+fi
+
+if [[ ! -d "$RESULT_DIR" ]]; then
+  echo "The result directory ($RESULT_DIR) doesn't yet exist, creating it now"
+  mkdir -p "$RESULT_DIR"
+fi
+
+# Ensure writability
+chmod a+w "$RESULT_DIR"
+
+# This enables perf to run without drivers
+echo 0>/proc/sys/kernel/perf_event_paranoid
+
+
+##################################################
+# Start Media Services
+##################################################
+
+cd DeathStarBench/mediaMicroservices || exit 1
+echo "Starting services ..."
+sudo docker-compose up -d
+
+
+##################################################
+# Start Workload
+##################################################
+
+echo "Starting workload ..."
+(./wrk2/wrk -D exp -L \
+  --threads "$THREADS" \
+  --connections "$CONNECTIONS" \
+  --duration "$((DURATION + (CUSHION * 2)))" \
+  --rate "$RATE" \
+  --script ./scripts/media-microservices/compose-review.lua \
+  http://localhost:8080/wrk2-api/review/compose) &
+
+# Offset data collection
+sleep $CUSHION
+
+
+##################################################
+# Start Data Collection
+##################################################
+
+echo "Starting data collection"
+(sudo vtune -collect memory-access \
+  -analyze-system \
+  -d "$DURATION" \
+  -result-dir="$RESULT_DIR/$RESULT_NAME") &
+
+wait
+
+echo "DONE! Stopping services"
+
+sudo docker-compose down
