@@ -73,13 +73,15 @@ sudo docker-compose logs -f -t >> "$RESULT_DIR/${RESULT_NAME}_application.log" &
 ##################################################
 
 echo "[2] Starting workload ..."
-./wrk2/wrk -D exp -L \
+cd wrk2
+./wrk -D exp -L \
   --threads "$THREADS" \
   --connections "$CONNECTIONS" \
   --duration "$((DURATION + (CUSHION * 2)))" \
   --rate "$RATE" \
-  --script ./wrk2/scripts/media-microservices/compose-review.lua \
+  --script ./scripts/media-microservices/compose-review.lua \
   http://localhost:8080/wrk2-api/review/compose >> "$RESULT_DIR/${RESULT_NAME}_workload.log" &
+cd ..
 
 # Offset data collection
 sleep $CUSHION
