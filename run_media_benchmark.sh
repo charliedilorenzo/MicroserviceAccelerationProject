@@ -1,7 +1,7 @@
-#! /bin/bash
+#!/bin/bash
 
 ##################################################
-# SETUP
+# Setup
 ##################################################
 
 # constants
@@ -96,6 +96,9 @@ echo "Starting data collection"
 
 wait
 
-echo "DONE! Stopping services"
+##################################################
+# Clean Up
+##################################################
 
+echo "DONE! Stopping services"
 sudo docker-compose down
