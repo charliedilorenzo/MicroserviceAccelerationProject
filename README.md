@@ -36,6 +36,7 @@ change, you must modify both benchmark and copy scripts.
 - You plan on running many iterations of Vtune sequentially, you should leave
 the application containers running the whole time and shutdown at the end.
 You gotta modify the benchmark script.
+- wrk2 is weird. might require link `sudo ln -s /usr/share/lua /usr/local/share` and or adding `package.cpath = package.cpath .. ";/usr/lib64/lua/5.1/?.so"`
 
 ### Vtune options
 
