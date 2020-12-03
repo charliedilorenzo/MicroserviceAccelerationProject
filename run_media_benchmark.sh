@@ -47,15 +47,13 @@ if [ -z "${RESULT_NAME}" ]; then
 fi
 
 if [[ ! -d "$RESULT_DIR" ]]; then
-  echo "The result directory ($RESULT_DIR) doesn't yet exist, creating it now"
-  mkdir -p "$RESULT_DIR"
+  echo "The result directory ($RESULT_DIR) doesn't yet exist!"
+  exit 1
 fi
 
-# Ensure writability
-sudo chmod a+w "$RESULT_DIR"
-
-# This enables perf to run without drivers
-echo 0>/proc/sys/kernel/perf_event_paranoid
+# these don't work, not sure why
+# sudo chmod a+w "$RESULT_DIR"
+# echo 0>/proc/sys/kernel/perf_event_paranoid
 
 
 ##################################################
