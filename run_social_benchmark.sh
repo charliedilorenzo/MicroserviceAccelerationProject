@@ -42,8 +42,8 @@ for var in "$@"; do
     VTUNE_COMMANDS="${var#*=}"
     ;;
   *)
-    echo "Run Media Benchmark - Usage:
-sudo ./run_media_benchmark.sh -duration=60 -threads=10 -rate=100  -name=bob"
+    echo "Run Social Benchmark - Usage:
+sudo ./run_social_benchmark.sh -duration=60 -threads=10 -rate=100  -name=bob"
     exit 0
     ;;
   esac
@@ -63,7 +63,7 @@ fi
 
 
 ##################################################
-# Start Media Services
+# Start Social Services
 ##################################################
 
 cd DeathStarBench/socialNetwork || exit 1
@@ -100,9 +100,7 @@ sleep $CUSHION
 ##################################################
 
 echo "[3] Starting data collection ..."
-sudo vtune $VTUNE_COMMANDS \
-  -d "$DURATION" \
-  -result-dir="$RESULT_DIR/$RESULT_NAME"
+sudo vtune $VTUNE_COMMANDS -d "$DURATION" -result-dir="$RESULT_DIR/$RESULT_NAME"
 
 
 ##################################################
