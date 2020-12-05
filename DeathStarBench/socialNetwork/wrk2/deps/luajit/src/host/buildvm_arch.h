@@ -8,7 +8,7 @@
 #line 1 "vm_x86.dasc"
 //|// Low-level VM code for x86 CPUs.
 //|// Bytecode interpreter, fast functions and helper functions.
-//|// Copyright (C) 2005-2014 Mike Pall. See Copyright Notice in luajit.h
+//|// Copyright (C) 2005-2017 Mike Pall. See Copyright Notice in luajit.h
 //|
 //|.if P64
 //|.arch x64
@@ -26,7 +26,7 @@
 #line 11 "vm_x86.dasc"
 //|
 //|.actionlist build_actionlist
-static const unsigned char build_actionlist[14361] = {
+static const unsigned char build_actionlist[14362] = {
   254,1,248,10,252,247,195,237,15,132,244,11,131,227,252,248,41,218,72,141,
   76,25,252,248,139,90,252,252,199,68,10,4,237,248,12,131,192,1,15,132,244,
   13,137,68,36,4,252,247,195,237,15,132,244,14,248,15,129,252,243,239,252,247,
@@ -249,27 +249,27 @@ static const unsigned char build_actionlist[14361] = {
   136,244,249,248,2,255,184,237,252,233,244,77,248,3,129,252,245,0,0,0,128,
   137,106,4,252,233,244,2,248,4,15,87,228,252,233,244,1,248,115,129,252,248,
   239,15,130,244,64,129,122,253,4,239,15,131,244,64,129,122,253,12,239,15,131,
-  244,64,221,66,8,221,2,248,1,255,217,252,248,223,224,158,15,138,244,1,221,
-  217,252,233,244,88,248,116,129,252,248,239,15,130,244,64,129,122,253,4,239,
-  15,131,244,64,129,122,253,12,239,15,131,244,64,252,242,15,16,2,252,242,15,
-  16,74,8,232,244,117,252,233,244,72,248,118,185,2,0,0,0,129,122,253,4,239,
-  255,15,131,244,64,252,242,15,16,2,248,5,57,193,15,131,244,72,129,124,253,
-  202,252,252,239,15,131,244,64,248,6,252,242,15,16,76,202,252,248,248,7,252,
-  242,15,93,193,131,193,1,252,233,244,5,248,119,185,2,0,0,0,129,122,253,4,239,
-  15,131,244,64,252,242,15,16,2,248,5,57,193,15,131,244,72,129,124,253,202,
-  252,252,239,255,15,131,244,64,248,6,252,242,15,16,76,202,252,248,248,7,252,
-  242,15,95,193,131,193,1,252,233,244,5,248,120,129,252,248,239,15,130,244,
-  64,129,122,253,4,239,15,133,244,64,139,42,252,242,15,42,133,233,252,233,244,
-  72,248,121,129,252,248,239,15,133,244,64,255,129,122,253,4,239,15,133,244,
-  64,139,42,139,90,252,252,131,189,233,1,15,130,244,80,15,182,173,233,252,242,
-  15,42,197,252,233,244,72,248,122,65,139,174,233,65,59,174,233,15,130,244,
-  247,232,244,74,248,1,129,252,248,239,15,133,244,64,255,129,122,253,4,239,
-  15,131,244,64,252,242,15,44,42,129,252,253,252,255,0,0,0,15,135,244,64,137,
-  108,36,4,199,68,36,8,1,0,0,0,72,141,68,36,4,248,123,139,108,36,24,137,149,
-  233,139,84,36,8,72,137,198,137,252,239,137,92,36,28,232,251,1,19,139,149,
-  233,139,90,252,252,199,66,252,252,237,137,66,252,248,252,233,244,67,248,124,
-  65,139,174,233,65,59,174,233,15,130,244,247,232,244,74,248,1,199,68,36,4,
-  252,255,252,255,252,255,252,255,129,252,248,239,255,15,130,244,64,15,134,
+  244,64,221,66,8,221,2,248,1,255,217,252,248,223,224,102,37,0,4,15,133,244,
+  1,221,217,252,233,244,88,248,116,129,252,248,239,15,130,244,64,129,122,253,
+  4,239,15,131,244,64,129,122,253,12,239,15,131,244,64,252,242,15,16,2,252,
+  242,15,16,74,8,232,244,117,252,233,244,72,248,118,185,2,0,0,0,129,122,253,
+  4,239,255,15,131,244,64,252,242,15,16,2,248,5,57,193,15,131,244,72,129,124,
+  253,202,252,252,239,15,131,244,64,248,6,252,242,15,16,76,202,252,248,248,
+  7,252,242,15,93,193,131,193,1,252,233,244,5,248,119,185,2,0,0,0,129,122,253,
+  4,239,15,131,244,64,252,242,15,16,2,248,5,57,193,15,131,244,72,129,124,253,
+  202,252,252,239,255,15,131,244,64,248,6,252,242,15,16,76,202,252,248,248,
+  7,252,242,15,95,193,131,193,1,252,233,244,5,248,120,129,252,248,239,15,130,
+  244,64,129,122,253,4,239,15,133,244,64,139,42,252,242,15,42,133,233,252,233,
+  244,72,248,121,129,252,248,239,15,133,244,64,255,129,122,253,4,239,15,133,
+  244,64,139,42,139,90,252,252,131,189,233,1,15,130,244,80,15,182,173,233,252,
+  242,15,42,197,252,233,244,72,248,122,65,139,174,233,65,59,174,233,15,130,
+  244,247,232,244,74,248,1,129,252,248,239,15,133,244,64,255,129,122,253,4,
+  239,15,131,244,64,252,242,15,44,42,129,252,253,252,255,0,0,0,15,135,244,64,
+  137,108,36,4,199,68,36,8,1,0,0,0,72,141,68,36,4,248,123,139,108,36,24,137,
+  149,233,139,84,36,8,72,137,198,137,252,239,137,92,36,28,232,251,1,19,139,
+  149,233,139,90,252,252,199,66,252,252,237,137,66,252,248,252,233,244,67,248,
+  124,65,139,174,233,65,59,174,233,15,130,244,247,232,244,74,248,1,199,68,36,
+  4,252,255,252,255,252,255,252,255,129,252,248,239,255,15,130,244,64,15,134,
   244,247,129,122,253,20,239,15,131,244,64,252,242,15,44,106,16,137,108,36,
   4,248,1,129,122,253,4,239,15,133,244,64,129,122,253,12,239,15,131,244,64,
   139,42,137,108,36,8,139,173,233,252,242,15,44,74,8,139,68,36,4,57,197,15,
@@ -638,90 +638,90 @@ static const unsigned char build_actionlist[14361] = {
   72,139,41,131,193,8,73,137,47,65,131,199,8,131,232,1,15,133,244,2,139,106,
   252,248,248,3,139,68,36,4,128,189,233,1,15,135,244,251,248,4,139,157,233,
   139,11,15,182,252,233,15,182,205,131,195,4,65,252,255,36,252,238,248,5,255,
-  252,247,195,237,15,133,244,4,15,182,75,252,253,72,252,247,209,141,12,202,
-  68,139,121,252,248,69,139,191,233,69,139,191,233,252,233,244,4,248,7,129,
-  252,235,239,252,247,195,237,15,133,244,254,41,218,65,137,215,139,90,252,252,
-  252,233,244,1,248,8,129,195,239,252,233,244,1,255,141,76,202,8,72,139,105,
-  232,72,139,65,252,240,72,137,41,72,137,65,8,139,105,224,139,65,228,137,105,
-  252,248,137,65,252,252,129,252,248,239,184,237,15,133,244,30,137,202,137,
-  90,252,252,139,157,233,139,11,15,182,252,233,15,182,205,131,195,4,65,252,
-  255,36,252,238,255,68,137,60,36,68,137,116,36,4,139,108,202,252,240,139,68,
-  202,252,248,68,139,181,233,131,195,4,68,139,189,233,248,1,68,57,252,240,15,
-  131,244,251,65,129,124,253,199,4,239,15,132,244,250,252,242,15,42,192,73,
-  139,44,199,72,137,108,202,8,131,192,1,252,242,15,17,4,202,137,68,202,252,
-  248,248,2,15,183,67,252,254,141,156,253,131,233,248,3,68,139,116,36,4,68,
-  139,60,36,139,3,15,182,204,15,182,232,131,195,4,193,232,16,65,252,255,36,
-  252,238,248,4,131,192,1,252,233,244,1,248,5,68,41,252,240,248,6,59,133,233,
-  15,135,244,3,68,105,252,248,239,255,68,3,189,233,65,129,191,233,239,15,132,
-  244,253,70,141,116,48,1,73,139,175,233,73,139,135,233,72,137,44,202,72,137,
-  68,202,8,68,137,116,202,252,248,252,233,244,2,248,7,131,192,1,252,233,244,
-  6,255,129,124,253,202,252,236,239,15,133,244,251,139,108,202,232,129,124,
-  253,202,252,244,239,15,133,244,251,129,124,253,202,252,252,239,15,133,244,
-  251,128,189,233,235,15,133,244,251,141,156,253,131,233,199,68,202,252,248,
-  0,0,0,0,199,68,202,252,252,252,255,127,252,254,252,255,248,1,139,3,15,182,
-  204,15,182,232,131,195,4,193,232,16,65,252,255,36,252,238,248,5,198,67,252,
-  252,235,141,156,253,131,233,198,3,235,252,233,244,1,255,15,182,252,236,15,
-  182,192,68,137,60,36,68,141,188,253,194,233,141,12,202,68,43,122,252,252,
-  133,252,237,15,132,244,251,141,108,252,233,252,248,65,57,215,15,131,244,248,
-  248,1,73,139,71,252,248,65,131,199,8,72,137,1,131,193,8,57,252,233,15,131,
-  244,249,65,57,215,15,130,244,1,248,2,199,65,4,237,131,193,8,57,252,233,15,
-  130,244,2,248,3,68,139,60,36,139,3,15,182,204,15,182,232,131,195,4,193,232,
-  16,65,252,255,36,252,238,248,5,199,68,36,4,1,0,0,0,137,208,68,41,252,248,
-  15,134,244,3,137,197,193,252,237,3,131,197,1,137,108,36,4,139,108,36,24,1,
-  200,59,133,233,15,135,244,253,248,6,255,73,139,71,252,248,65,131,199,8,72,
-  137,1,131,193,8,65,57,215,15,130,244,6,252,233,244,3,248,7,137,149,233,137,
-  141,233,137,92,36,28,65,41,215,139,116,36,4,131,252,238,1,137,252,239,232,
-  251,1,0,139,149,233,139,141,233,65,1,215,252,233,244,6,255,193,225,3,255,
-  248,1,139,90,252,252,137,68,36,4,252,247,195,237,15,133,244,253,255,248,14,
-  65,137,215,131,232,1,15,132,244,249,248,2,73,139,44,15,73,137,111,252,248,
-  65,131,199,8,131,232,1,15,133,244,2,248,3,139,68,36,4,15,182,107,252,255,
-  248,5,57,197,15,135,244,252,255,72,139,44,10,72,137,106,252,248,255,248,5,
-  56,67,252,255,15,135,244,252,255,15,182,75,252,253,72,252,247,209,141,20,
-  202,68,139,122,252,248,69,139,191,233,69,139,191,233,139,3,15,182,204,15,
-  182,232,131,195,4,193,232,16,65,252,255,36,252,238,248,6,255,65,199,71,252,
-  252,237,65,131,199,8,255,199,68,194,252,244,237,255,131,192,1,252,233,244,
-  5,248,7,141,171,233,252,247,197,237,15,133,244,15,41,252,234,255,1,252,233,
-  255,137,221,209,252,237,129,229,239,102,65,129,172,253,46,233,238,15,130,
-  244,150,255,141,12,202,255,129,121,253,4,239,15,133,244,255,255,129,121,253,
-  12,239,15,133,244,62,129,121,253,20,239,15,133,244,62,139,41,131,121,16,0,
-  15,140,244,251,255,129,121,253,12,239,15,133,244,167,129,121,253,20,239,15,
-  133,244,167,255,139,105,16,133,252,237,15,136,244,251,3,41,15,128,244,247,
-  137,41,255,59,105,8,199,65,28,237,137,105,24,255,15,142,244,253,248,1,248,
-  6,141,156,253,131,233,255,141,156,253,131,233,15,183,67,252,254,15,142,245,
-  248,1,248,6,255,15,143,244,253,248,6,141,156,253,131,233,248,1,255,248,7,
-  139,3,15,182,204,15,182,232,131,195,4,193,232,16,65,252,255,36,252,238,248,
-  5,255,3,41,15,128,244,1,137,41,255,15,141,244,7,255,141,156,253,131,233,15,
-  183,67,252,254,15,141,245,255,15,140,244,7,255,252,233,244,6,248,9,255,129,
-  121,253,4,239,255,15,131,244,62,129,121,253,12,239,15,131,244,62,255,129,
-  121,253,12,239,15,131,244,167,129,121,253,20,239,15,131,244,167,255,139,105,
-  20,255,129,252,253,239,15,131,244,62,255,252,242,15,16,1,252,242,15,16,73,
-  8,255,252,242,15,88,65,16,252,242,15,17,1,133,252,237,15,136,244,249,255,
-  15,140,244,249,255,102,15,46,200,248,1,252,242,15,17,65,24,255,15,131,244,
-  248,141,156,253,131,233,255,141,156,253,131,233,15,183,67,252,254,15,131,
-  245,255,15,130,244,248,141,156,253,131,233,255,248,2,139,3,15,182,204,15,
-  182,232,131,195,4,193,232,16,65,252,255,36,252,238,248,3,102,15,46,193,252,
-  233,244,1,255,141,12,202,139,105,4,129,252,253,239,15,132,244,247,255,137,
-  105,252,252,139,41,137,105,252,248,252,233,245,255,141,156,253,131,233,139,
-  1,137,105,252,252,137,65,252,248,255,65,139,142,233,139,4,129,72,139,128,
-  233,139,108,36,24,65,137,150,233,65,137,174,233,76,137,36,36,76,137,108,36,
-  8,72,131,252,236,16,252,255,224,255,141,156,253,131,233,139,3,15,182,204,
-  15,182,232,131,195,4,193,232,16,65,252,255,36,252,238,255,137,221,209,252,
-  237,129,229,239,102,65,129,172,253,46,233,238,15,130,244,152,255,68,139,187,
-  233,139,108,36,24,141,12,202,59,141,233,15,135,244,25,15,182,139,233,57,200,
-  15,134,244,249,248,2,255,15,183,67,252,254,252,233,245,255,248,3,199,68,194,
-  252,252,237,131,192,1,57,200,15,134,244,3,252,233,244,2,255,141,44,197,237,
-  141,4,194,68,139,122,252,248,137,104,252,252,68,137,120,252,248,139,108,36,
-  24,141,12,200,59,141,233,15,135,244,24,137,209,137,194,15,182,171,233,133,
-  252,237,15,132,244,248,248,1,131,193,8,57,209,15,131,244,249,68,139,121,252,
-  248,68,137,56,68,139,121,252,252,68,137,120,4,131,192,8,199,65,252,252,237,
-  131,252,237,1,15,133,244,1,248,2,255,68,139,187,233,139,3,15,182,204,15,182,
-  232,131,195,4,193,232,16,65,252,255,36,252,238,255,248,3,199,64,4,237,131,
-  192,8,131,252,237,1,15,133,244,3,252,233,244,2,255,139,106,252,248,76,139,
-  189,233,139,108,36,24,141,68,194,252,248,137,149,233,141,136,233,59,141,233,
-  137,133,233,255,137,252,239,255,76,137,252,254,137,252,239,255,15,135,244,
-  23,65,199,134,233,237,255,65,252,255,215,255,65,252,255,150,233,255,65,199,
-  134,233,237,139,149,233,141,12,194,252,247,217,3,141,233,139,90,252,252,252,
-  233,244,12,255,254,0
+  252,247,195,237,15,133,244,4,15,182,75,252,253,72,252,247,209,68,139,124,
+  202,252,248,69,139,191,233,69,139,191,233,252,233,244,4,248,7,129,252,235,
+  239,252,247,195,237,15,133,244,254,41,218,65,137,215,139,90,252,252,252,233,
+  244,1,248,8,129,195,239,252,233,244,1,255,141,76,202,8,72,139,105,232,72,
+  139,65,252,240,72,137,41,72,137,65,8,139,105,224,139,65,228,137,105,252,248,
+  137,65,252,252,129,252,248,239,184,237,15,133,244,30,137,202,137,90,252,252,
+  139,157,233,139,11,15,182,252,233,15,182,205,131,195,4,65,252,255,36,252,
+  238,255,68,137,60,36,68,137,116,36,4,139,108,202,252,240,139,68,202,252,248,
+  68,139,181,233,131,195,4,68,139,189,233,248,1,68,57,252,240,15,131,244,251,
+  65,129,124,253,199,4,239,15,132,244,250,252,242,15,42,192,73,139,44,199,72,
+  137,108,202,8,131,192,1,252,242,15,17,4,202,137,68,202,252,248,248,2,15,183,
+  67,252,254,141,156,253,131,233,248,3,68,139,116,36,4,68,139,60,36,139,3,15,
+  182,204,15,182,232,131,195,4,193,232,16,65,252,255,36,252,238,248,4,131,192,
+  1,252,233,244,1,248,5,68,41,252,240,248,6,59,133,233,15,135,244,3,68,105,
+  252,248,239,255,68,3,189,233,65,129,191,233,239,15,132,244,253,70,141,116,
+  48,1,73,139,175,233,73,139,135,233,72,137,44,202,72,137,68,202,8,68,137,116,
+  202,252,248,252,233,244,2,248,7,131,192,1,252,233,244,6,255,129,124,253,202,
+  252,236,239,15,133,244,251,139,108,202,232,129,124,253,202,252,244,239,15,
+  133,244,251,129,124,253,202,252,252,239,15,133,244,251,128,189,233,235,15,
+  133,244,251,141,156,253,131,233,199,68,202,252,248,0,0,0,0,199,68,202,252,
+  252,252,255,127,252,254,252,255,248,1,139,3,15,182,204,15,182,232,131,195,
+  4,193,232,16,65,252,255,36,252,238,248,5,198,67,252,252,235,141,156,253,131,
+  233,198,3,235,252,233,244,1,255,15,182,252,236,15,182,192,68,137,60,36,68,
+  141,188,253,194,233,141,12,202,68,43,122,252,252,133,252,237,15,132,244,251,
+  141,108,252,233,252,248,65,57,215,15,131,244,248,248,1,73,139,71,252,248,
+  65,131,199,8,72,137,1,131,193,8,57,252,233,15,131,244,249,65,57,215,15,130,
+  244,1,248,2,199,65,4,237,131,193,8,57,252,233,15,130,244,2,248,3,68,139,60,
+  36,139,3,15,182,204,15,182,232,131,195,4,193,232,16,65,252,255,36,252,238,
+  248,5,199,68,36,4,1,0,0,0,137,208,68,41,252,248,15,134,244,3,137,197,193,
+  252,237,3,131,197,1,137,108,36,4,139,108,36,24,1,200,59,133,233,15,135,244,
+  253,248,6,255,73,139,71,252,248,65,131,199,8,72,137,1,131,193,8,65,57,215,
+  15,130,244,6,252,233,244,3,248,7,137,149,233,137,141,233,137,92,36,28,65,
+  41,215,139,116,36,4,131,252,238,1,137,252,239,232,251,1,0,139,149,233,139,
+  141,233,65,1,215,252,233,244,6,255,193,225,3,255,248,1,139,90,252,252,137,
+  68,36,4,252,247,195,237,15,133,244,253,255,248,14,65,137,215,131,232,1,15,
+  132,244,249,248,2,73,139,44,15,73,137,111,252,248,65,131,199,8,131,232,1,
+  15,133,244,2,248,3,139,68,36,4,15,182,107,252,255,248,5,57,197,15,135,244,
+  252,255,72,139,44,10,72,137,106,252,248,255,248,5,56,67,252,255,15,135,244,
+  252,255,15,182,75,252,253,72,252,247,209,141,20,202,68,139,122,252,248,69,
+  139,191,233,69,139,191,233,139,3,15,182,204,15,182,232,131,195,4,193,232,
+  16,65,252,255,36,252,238,248,6,255,65,199,71,252,252,237,65,131,199,8,255,
+  199,68,194,252,244,237,255,131,192,1,252,233,244,5,248,7,141,171,233,252,
+  247,197,237,15,133,244,15,41,252,234,255,1,252,233,255,137,221,209,252,237,
+  129,229,239,102,65,129,172,253,46,233,238,15,130,244,150,255,141,12,202,255,
+  129,121,253,4,239,15,133,244,255,255,129,121,253,12,239,15,133,244,62,129,
+  121,253,20,239,15,133,244,62,139,41,131,121,16,0,15,140,244,251,255,129,121,
+  253,12,239,15,133,244,167,129,121,253,20,239,15,133,244,167,255,139,105,16,
+  133,252,237,15,136,244,251,3,41,15,128,244,247,137,41,255,59,105,8,199,65,
+  28,237,137,105,24,255,15,142,244,253,248,1,248,6,141,156,253,131,233,255,
+  141,156,253,131,233,15,183,67,252,254,15,142,245,248,1,248,6,255,15,143,244,
+  253,248,6,141,156,253,131,233,248,1,255,248,7,139,3,15,182,204,15,182,232,
+  131,195,4,193,232,16,65,252,255,36,252,238,248,5,255,3,41,15,128,244,1,137,
+  41,255,15,141,244,7,255,141,156,253,131,233,15,183,67,252,254,15,141,245,
+  255,15,140,244,7,255,252,233,244,6,248,9,255,129,121,253,4,239,255,15,131,
+  244,62,129,121,253,12,239,15,131,244,62,255,129,121,253,12,239,15,131,244,
+  167,129,121,253,20,239,15,131,244,167,255,139,105,20,255,129,252,253,239,
+  15,131,244,62,255,252,242,15,16,1,252,242,15,16,73,8,255,252,242,15,88,65,
+  16,252,242,15,17,1,133,252,237,15,136,244,249,255,15,140,244,249,255,102,
+  15,46,200,248,1,252,242,15,17,65,24,255,15,131,244,248,141,156,253,131,233,
+  255,141,156,253,131,233,15,183,67,252,254,15,131,245,255,15,130,244,248,141,
+  156,253,131,233,255,248,2,139,3,15,182,204,15,182,232,131,195,4,193,232,16,
+  65,252,255,36,252,238,248,3,102,15,46,193,252,233,244,1,255,141,12,202,139,
+  105,4,129,252,253,239,15,132,244,247,255,137,105,252,252,139,41,137,105,252,
+  248,252,233,245,255,141,156,253,131,233,139,1,137,105,252,252,137,65,252,
+  248,255,65,139,142,233,139,4,129,72,139,128,233,139,108,36,24,65,137,150,
+  233,65,137,174,233,76,137,36,36,76,137,108,36,8,72,131,252,236,16,252,255,
+  224,255,141,156,253,131,233,139,3,15,182,204,15,182,232,131,195,4,193,232,
+  16,65,252,255,36,252,238,255,137,221,209,252,237,129,229,239,102,65,129,172,
+  253,46,233,238,15,130,244,152,255,68,139,187,233,139,108,36,24,141,12,202,
+  59,141,233,15,135,244,25,15,182,139,233,57,200,15,134,244,249,248,2,255,15,
+  183,67,252,254,252,233,245,255,248,3,199,68,194,252,252,237,131,192,1,57,
+  200,15,134,244,3,252,233,244,2,255,141,44,197,237,141,4,194,68,139,122,252,
+  248,137,104,252,252,68,137,120,252,248,139,108,36,24,141,12,200,59,141,233,
+  15,135,244,24,137,209,137,194,15,182,171,233,133,252,237,15,132,244,248,248,
+  1,131,193,8,57,209,15,131,244,249,68,139,121,252,248,68,137,56,68,139,121,
+  252,252,68,137,120,4,131,192,8,199,65,252,252,237,131,252,237,1,15,133,244,
+  1,248,2,255,68,139,187,233,139,3,15,182,204,15,182,232,131,195,4,193,232,
+  16,65,252,255,36,252,238,255,248,3,199,64,4,237,131,192,8,131,252,237,1,15,
+  133,244,3,252,233,244,2,255,139,106,252,248,76,139,189,233,139,108,36,24,
+  141,68,194,252,248,137,149,233,141,136,233,59,141,233,137,133,233,255,137,
+  252,239,255,76,137,252,254,137,252,239,255,15,135,244,23,65,199,134,233,237,
+  255,65,252,255,215,255,65,252,255,150,233,255,65,199,134,233,237,139,149,
+  233,141,12,194,252,247,217,3,141,233,139,90,252,252,252,233,244,12,255,254,
+  0
 };
 
 #line 13 "vm_x86.dasc"
@@ -1338,6 +1338,9 @@ static const char *const extnames[] = {
 //|.define CFRAME_SPACE,	aword*5			// Delta for rsp (see <--).
 //|.macro saveregs_
 //|  push rbx; push r15; push r14
+//|.if NO_UNWIND
+//|  push r13; push r12
+//|.endif
 //|  sub rsp, CFRAME_SPACE
 //|.endmacro
 //|.macro saveregs
@@ -1345,15 +1348,28 @@ static const char *const extnames[] = {
 //|.endmacro
 //|.macro restoreregs
 //|  add rsp, CFRAME_SPACE
+//|.if NO_UNWIND
+//|  pop r12; pop r13
+//|.endif
 //|  pop r14; pop r15; pop rbx; pop rbp
 //|.endmacro
 //|
 //|//----- 16 byte aligned,
+//|.if NO_UNWIND
+//|.define SAVE_RET,	aword [rsp+aword*11]	//<-- rsp entering interpreter.
+//|.define SAVE_R4,	aword [rsp+aword*10]
+//|.define SAVE_R3,	aword [rsp+aword*9]
+//|.define SAVE_R2,	aword [rsp+aword*8]
+//|.define SAVE_R1,	aword [rsp+aword*7]
+//|.define SAVE_RU2,	aword [rsp+aword*6]
+//|.define SAVE_RU1,	aword [rsp+aword*5]	//<-- rsp after register saves.
+//|.else
 //|.define SAVE_RET,	aword [rsp+aword*9]	//<-- rsp entering interpreter.
 //|.define SAVE_R4,	aword [rsp+aword*8]
 //|.define SAVE_R3,	aword [rsp+aword*7]
 //|.define SAVE_R2,	aword [rsp+aword*6]
 //|.define SAVE_R1,	aword [rsp+aword*5]	//<-- rsp after register saves.
+//|.endif
 //|.define SAVE_CFRAME,	aword [rsp+aword*4]
 //|.define SAVE_PC,	dword [rsp+dword*7]
 //|.define SAVE_L,	dword [rsp+dword*6]
@@ -1541,7 +1557,7 @@ static void build_subroutines(BuildCtx *ctx)
 {
   //|.code_sub
   dasm_put(Dst, 0);
-#line 427 "vm_x86.dasc"
+#line 443 "vm_x86.dasc"
   //|
   //|//-----------------------------------------------------------------------
   //|//-- Return handling ----------------------------------------------------
@@ -1584,7 +1600,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|.if X64
   //|  mov RBa, [BASE+RA]
   dasm_put(Dst, 2, FRAME_P, LJ_TTRUE, FRAME_TYPE, FRAME_C, FRAME_TYPE, DISPATCH_GL(vmstate), ~LJ_VMST_C);
-#line 468 "vm_x86.dasc"
+#line 484 "vm_x86.dasc"
   //|  mov [BASE-8], RBa
   //|.else
   //|  mov RB, [BASE+RA]
@@ -1625,7 +1641,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mov dword [BASE-4], LJ_TNIL
   //|  add BASE, 8
   dasm_put(Dst, 92, Dt1(->base), Dt1(->top), Dt1(->cframe), Dt1(->maxstack), LJ_TNIL);
-#line 507 "vm_x86.dasc"
+#line 523 "vm_x86.dasc"
   //|  add RD, 1
   //|  jmp <4
   //|
@@ -1668,7 +1684,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mov dword GL:RB->vmstate, ~LJ_VMST_C
   //|  jmp ->vm_leave_unw
   dasm_put(Dst, 192, Dt1(->top), Dt1(->top), LUA_YIELD, Dt1(->glref), Dt2(->vmstate), ~LJ_VMST_C);
-#line 548 "vm_x86.dasc"
+#line 564 "vm_x86.dasc"
   //|
   //|->vm_unwind_rethrow:
   //|.if X64 and not X64WIN
@@ -1710,7 +1726,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|->vm_growstack_v:			// Grow stack for vararg Lua function.
   //|  sub RD, 8
   dasm_put(Dst, 275, CFRAME_RAWMASK, 1+1, Dt1(->base), Dt1(->glref), GG_G2DISP, LJ_TFALSE, DISPATCH_GL(vmstate), ~LJ_VMST_INTERP, LUA_MINSTACK);
-#line 588 "vm_x86.dasc"
+#line 604 "vm_x86.dasc"
   //|  jmp >1
   //|
   //|->vm_growstack_f:			// Grow stack for fixarg Lua function.
@@ -1769,7 +1785,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  // Resume after yield (like a return).
   //|  set_vmstate INTERP
   dasm_put(Dst, 371, -4+PC2PROTO(framesize), Dt1(->base), Dt1(->top), Dt1(->base), Dt1(->top), Dt7(->pc), FRAME_CP, CFRAME_RESUME, Dt1(->glref), GG_G2DISP, Dt1(->cframe), Dt1(->status));
-#line 645 "vm_x86.dasc"
+#line 661 "vm_x86.dasc"
   //|  mov byte L:RB->status, RDL
   //|  mov BASE, L:RB->base
   //|  mov RD, L:RB->top
@@ -1820,7 +1836,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|2:  // Entry point for vm_cpcall below (RA = base, RB = L, PC = ftype).
   //|  mov DISPATCH, L:RB->glref		// Setup pointer to dispatch table.
   dasm_put(Dst, 524, DISPATCH_GL(vmstate), ~LJ_VMST_INTERP, Dt1(->status), Dt1(->base), Dt1(->top), FRAME_TYPE, FRAME_CP, FRAME_C, Dt1(->cframe), Dt1(->cframe));
-#line 694 "vm_x86.dasc"
+#line 710 "vm_x86.dasc"
   //|  add DISPATCH, GG_G2DISP
   //|
   //|3:  // Entry point for vm_resume above (RA = base, RB = L, PC = ftype).
@@ -1887,7 +1903,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  jz ->vm_leave_cp			// No base? Just remove C frame.
   //|  mov RA, RC
   dasm_put(Dst, 642, Dt1(->glref), GG_G2DISP, DISPATCH_GL(vmstate), ~LJ_VMST_INTERP, Dt1(->base), Dt1(->top), LJ_TFUNC, Dt7(->pc), Dt1(->stack), Dt1(->top), Dt1(->cframe), Dt1(->cframe));
-#line 759 "vm_x86.dasc"
+#line 775 "vm_x86.dasc"
   //|  mov PC, FRAME_CP
   //|  jmp <2				// Else continue with the call.
   //|
@@ -1957,7 +1973,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mov L:CARG1d->base, BASE
   //|  mov CARG3d, RA
   dasm_put(Dst, 788, FRAME_CP, LJ_TNIL, 0, Dt7(->pc), PC2PROTO(k), Dt1(->base));
-#line 827 "vm_x86.dasc"
+#line 843 "vm_x86.dasc"
   //|  mov RAa, [RC]
   //|  mov [RB], RAa
   //|  mov CARG2d, RB
@@ -2030,7 +2046,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|->cont_ra:				// BASE = base, RC = result
   //|  movzx RA, PC_RA
   dasm_put(Dst, 913, LJ_TSTR, BC_GGET, DISPATCH_GL(tmptv), LJ_TTAB, Dt1(->base), Dt1(->base));
-#line 898 "vm_x86.dasc"
+#line 914 "vm_x86.dasc"
   //|.if X64
   //|  mov RBa, [RC]
   //|  mov [BASE+RA*8], RBa
@@ -2088,7 +2104,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|1:
   //|  movzx RB, PC_RB			// Reload TValue *t from RB.
   dasm_put(Dst, 1053, Dt1(->top), FRAME_CONT, 2+1, LJ_TSTR, BC_GSET, DISPATCH_GL(tmptv), LJ_TTAB);
-#line 954 "vm_x86.dasc"
+#line 970 "vm_x86.dasc"
   //|  lea RB, [BASE+RB*8]
   //|2:
   //|.if X64
@@ -2184,7 +2200,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|5:
   //|  movzx RD, PC_RD
   dasm_put(Dst, 1187, Dt1(->base), Dt1(->base), Dt1(->top), FRAME_CONT, 3+1, Dt1(->base), Dt1(->base));
-#line 1048 "vm_x86.dasc"
+#line 1064 "vm_x86.dasc"
   //|  branchPC RD
   //|6:
   //|  ins_next
@@ -2250,7 +2266,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|->vmeta_arith_vn:
   //|  lea RC, [KBASE+RC*8]
   dasm_put(Dst, 1358, -BCBIAS_J*4, LJ_TISTRUECOND, LJ_TISTRUECOND, Dt1(->base), Dt1(->base));
-#line 1112 "vm_x86.dasc"
+#line 1128 "vm_x86.dasc"
   //|  jmp >1
   //|
   //|->vmeta_arith_nvo:
@@ -2322,7 +2338,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mov NARGS:RD, 2+1			// 2 args for func(o1, o2).
   //|  jmp ->vm_call_dispatch
   dasm_put(Dst, 1491, Dt1(->base), Dt1(->base), FRAME_CONT, 2+1);
-#line 1182 "vm_x86.dasc"
+#line 1198 "vm_x86.dasc"
   //|
   //|->vmeta_len:
   //|  mov L:RB, SAVE_L
@@ -2334,7 +2350,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  // NULL (retry) or TValue * (metamethod) returned in eax (RC).
   //|  mov BASE, L:RB->base
   dasm_put(Dst, 1601, Dt1(->base), Dt1(->base));
-#line 1192 "vm_x86.dasc"
+#line 1208 "vm_x86.dasc"
 #if LJ_52
   //|  test RC, RC
   //|  jne ->vmeta_binop			// Binop call for compatibility.
@@ -2342,11 +2358,11 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mov TAB:FCARG1, [BASE+RD*8]
   //|  jmp ->BC_LEN_Z
   dasm_put(Dst, 1632);
-#line 1198 "vm_x86.dasc"
+#line 1214 "vm_x86.dasc"
 #else
   //|  jmp ->vmeta_binop			// Binop call for compatibility.
   dasm_put(Dst, 1651);
-#line 1200 "vm_x86.dasc"
+#line 1216 "vm_x86.dasc"
 #endif
   //|
   //|//-- Call metamethod ----------------------------------------------------
@@ -2493,7 +2509,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  jz >2
   //|  mov RA, BASE
   dasm_put(Dst, 1656, Dt1(->base), Dt1(->base), Dt7(->pc), Dt1(->base), Dt1(->base), GG_DISP2STATIC, 1+1, LJ_TISTRUECOND);
-#line 1345 "vm_x86.dasc"
+#line 1361 "vm_x86.dasc"
   //|1:
   //|  add RA, 8
   //|.if X64
@@ -2535,7 +2551,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mov RC, ~LJ_TLIGHTUD
   //|  jmp <2
   dasm_put(Dst, 1842, 1+1, ~LJ_TNUMX, ((char *)(&((GCfuncC *)0)->upvalue)), LJ_TSTR, ~LJ_TLIGHTUD);
-#line 1385 "vm_x86.dasc"
+#line 1401 "vm_x86.dasc"
   //|.endif
   //|
   //|//-- Base library: getters and setters ---------------------------------
@@ -2559,7 +2575,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  imul RA, #NODE
   //|  add NODE:RA, TAB:RB->node
   dasm_put(Dst, 1946, 1+1, LJ_TTAB, Dt6(->metatable), LJ_TNIL, DISPATCH_GL(gcroot)+4*(GCROOT_MMNAME+MM_metatable), LJ_TTAB, Dt6(->hmask), Dt5(->hash), sizeof(Node));
-#line 1407 "vm_x86.dasc"
+#line 1423 "vm_x86.dasc"
   //|3:  // Rearranged logic, because we expect _not_ to find the key.
   //|  cmp dword NODE:RA->key.it, LJ_TSTR
   //|  jne >4
@@ -2581,7 +2597,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|6:
   //|  cmp RB, LJ_TUDATA;  je <1
   dasm_put(Dst, 2019, Dt6(->node), DtB(->key.it), LJ_TSTR, DtB(->key.gcr), DtB(->next), LJ_TNIL);
-#line 1427 "vm_x86.dasc"
+#line 1443 "vm_x86.dasc"
   //|.if X64
   //|  cmp RB, LJ_TNUMX;  ja >8
   //|  cmp RB, LJ_TISNUM;  jbe >7
@@ -2599,7 +2615,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|
   //|.ffunc_2 setmetatable
   dasm_put(Dst, 2084, LJ_TUDATA, LJ_TNUMX, LJ_TISNUM, LJ_TLIGHTUD, LJ_TNUMX, DISPATCH_GL(gcroot[GCROOT_BASEMT]), 2+1);
-#line 1443 "vm_x86.dasc"
+#line 1459 "vm_x86.dasc"
   //|  cmp dword [BASE+4], LJ_TTAB;  jne ->fff_fallback
   //|  // Fast path: no mt for table yet and not clearing the mt.
   //|  mov TAB:RB, [BASE]
@@ -2615,7 +2631,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  // Possible write barrier. Table is black, but skip iswhite(mt) check.
   //|  barrierback TAB:RB, RC
   dasm_put(Dst, 2140, LJ_TTAB, Dt6(->metatable), LJ_TTAB, Dt6(->metatable), LJ_TTAB, Dt6(->marked), LJ_GC_BLACK, Dt6(->marked), (uint8_t)~LJ_GC_BLACK, DISPATCH_GL(gc.grayagain));
-#line 1457 "vm_x86.dasc"
+#line 1473 "vm_x86.dasc"
   //|1:
   //|  jmp ->fff_res1
   //|
@@ -2674,7 +2690,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|.if SSE
   //|  movsd xmm0, qword [BASE]; jmp ->fff_resxmm0
   dasm_put(Dst, 2209, DISPATCH_GL(gc.grayagain), Dt6(->gclist), 2+1, LJ_TTAB, 1+1, LJ_TISNUM);
-#line 1514 "vm_x86.dasc"
+#line 1530 "vm_x86.dasc"
   //|.else
   //|  fld qword [BASE]; jmp ->fff_resn
   //|.endif
@@ -2695,7 +2711,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  jne ->fff_fallback
   //|  ffgccheck				// Caveat: uses label 1.
   dasm_put(Dst, 2295, 1+1, LJ_TSTR, LJ_TSTR, LJ_TISNUM, DISPATCH_GL(gcroot[GCROOT_BASEMT_NUM]));
-#line 1533 "vm_x86.dasc"
+#line 1549 "vm_x86.dasc"
   //|  mov L:RB, SAVE_L
   //|  mov L:RB->base, BASE		// Add frame since C call can throw.
   //|  mov SAVE_PC, PC			// Redundant (but a defined value).
@@ -2720,7 +2736,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  cmp dword [BASE+4], LJ_TTAB;  jne ->fff_fallback
   //|  mov L:RB, SAVE_L
   dasm_put(Dst, 2365, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), Dt1(->base), Dt1(->base), 1+1, LJ_TTAB);
-#line 1556 "vm_x86.dasc"
+#line 1572 "vm_x86.dasc"
   //|  mov L:RB->base, BASE		// Add frame since C call can throw.
   //|  mov L:RB->top, BASE		// Dummy frame length is ok.
   //|  mov PC, [BASE-4]
@@ -2773,14 +2789,14 @@ static void build_subroutines(BuildCtx *ctx)
   //|.ffunc_1 pairs
   //|  mov TAB:RB, [BASE]
   dasm_put(Dst, 2435, Dt1(->base), Dt1(->top), Dt1(->base), 1+2, LJ_TNIL, LJ_TNIL, 1+1);
-#line 1607 "vm_x86.dasc"
+#line 1623 "vm_x86.dasc"
   //|  cmp dword [BASE+4], LJ_TTAB;  jne ->fff_fallback
   dasm_put(Dst, 2530, LJ_TTAB);
-#line 1608 "vm_x86.dasc"
+#line 1624 "vm_x86.dasc"
 #if LJ_52
   //|  cmp dword TAB:RB->metatable, 0; jne ->fff_fallback
   dasm_put(Dst, 2542, Dt6(->metatable));
-#line 1610 "vm_x86.dasc"
+#line 1626 "vm_x86.dasc"
 #endif
   //|  mov CFUNC:RB, [BASE-8]
   //|  mov CFUNC:RD, CFUNC:RB->upvalue[0]
@@ -2791,7 +2807,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mov RD, 1+3
   //|  jmp ->fff_res
   //|
-  //|.ffunc_1 ipairs_aux
+  //|.ffunc_2 ipairs_aux
   //|  cmp dword [BASE+4], LJ_TTAB;  jne ->fff_fallback
   //|  cmp dword [BASE+12], LJ_TISNUM
   //|.if DUALNUM
@@ -2822,8 +2838,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mov TAB:RB, [BASE]
   //|  cmp RD, TAB:RB->asize;  jae >2	// Not in array part?
   //|  shl RD, 3
-  dasm_put(Dst, 2551, Dt8(->upvalue[0]), LJ_TFUNC, LJ_TNIL, 1+3, 1+1, LJ_TTAB, LJ_TISNUM, (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32), Dt6(->asize));
-#line 1651 "vm_x86.dasc"
+  dasm_put(Dst, 2551, Dt8(->upvalue[0]), LJ_TFUNC, LJ_TNIL, 1+3, 2+1, LJ_TTAB, LJ_TISNUM, (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32), Dt6(->asize));
+#line 1667 "vm_x86.dasc"
   //|  add RD, TAB:RB->array
   //|1:
   //|  cmp dword [RD+4], LJ_TNIL;  je ->fff_res0
@@ -2855,14 +2871,14 @@ static void build_subroutines(BuildCtx *ctx)
   //|.ffunc_1 ipairs
   //|  mov TAB:RB, [BASE]
   dasm_put(Dst, 2655, Dt6(->array), LJ_TNIL, Dt6(->hmask), 1+0, 1+1);
-#line 1681 "vm_x86.dasc"
+#line 1697 "vm_x86.dasc"
   //|  cmp dword [BASE+4], LJ_TTAB;  jne ->fff_fallback
   dasm_put(Dst, 2530, LJ_TTAB);
-#line 1682 "vm_x86.dasc"
+#line 1698 "vm_x86.dasc"
 #if LJ_52
   //|  cmp dword TAB:RB->metatable, 0; jne ->fff_fallback
   dasm_put(Dst, 2542, Dt6(->metatable));
-#line 1684 "vm_x86.dasc"
+#line 1700 "vm_x86.dasc"
 #endif
   //|  mov CFUNC:RB, [BASE-8]
   //|  mov CFUNC:RD, CFUNC:RB->upvalue[0]
@@ -2898,7 +2914,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|.ffunc_2 xpcall
   //|  cmp dword [BASE+12], LJ_TFUNC;  jne ->fff_fallback
   dasm_put(Dst, 2731, Dt8(->upvalue[0]), LJ_TFUNC, 1+3, 1+1, 8+FRAME_PCALL, DISPATCH_GL(hookmask), HOOK_ACTIVE_SHIFT, 2+1, LJ_TFUNC);
-#line 1718 "vm_x86.dasc"
+#line 1734 "vm_x86.dasc"
   //|  mov RB, [BASE+4]			// Swap function and traceback.
   //|  mov [BASE+12], RB
   //|  mov dword [BASE+4], LJ_TFUNC
@@ -3091,12 +3107,12 @@ static void build_subroutines(BuildCtx *ctx)
   dasm_put(Dst, 2821, LJ_TFUNC, 16+FRAME_PCALL, 1+1, LJ_TTHREAD, Dt1(->cframe), Dt1(->status), LUA_YIELD);
   dasm_put(Dst, 2907, Dt1(->top), Dt1(->base), Dt1(->maxstack), Dt1(->top), Dt1(->base), Dt1(->top));
   dasm_put(Dst, 2996, DISPATCH_GL(vmstate), ~LJ_VMST_INTERP, Dt1(->base), LUA_YIELD, Dt1(->base), Dt1(->top), Dt1(->top), Dt1(->maxstack), LJ_TTRUE);
-#line 1907 "vm_x86.dasc"
+#line 1923 "vm_x86.dasc"
   //|  coroutine_resume_wrap 0		// coroutine.wrap
   dasm_put(Dst, 3093, FRAME_TYPE, LJ_TFALSE, Dt1(->top), Dt1(->top), 1+2, Dt1(->top), Dt1(->base), Dt8(->upvalue[0].gcr), Dt1(->cframe));
   dasm_put(Dst, 3207, Dt1(->status), LUA_YIELD, Dt1(->top), Dt1(->base), Dt1(->maxstack), Dt1(->top), Dt1(->base), Dt1(->top));
   dasm_put(Dst, 3277, DISPATCH_GL(vmstate), ~LJ_VMST_INTERP, Dt1(->base), LUA_YIELD, Dt1(->base), Dt1(->top), Dt1(->top), Dt1(->maxstack));
-#line 1908 "vm_x86.dasc"
+#line 1924 "vm_x86.dasc"
   //|
   //|.ffunc coroutine_yield
   //|  mov L:RB, SAVE_L
@@ -3104,7 +3120,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  jz ->fff_fallback
   //|  mov L:RB->base, BASE
   dasm_put(Dst, 3366, FRAME_TYPE, Dt1(->top), Dt1(->base), Dt1(->cframe), CFRAME_RESUME);
-#line 1914 "vm_x86.dasc"
+#line 1930 "vm_x86.dasc"
   //|  lea RD, [BASE+NARGS:RD*8-8]
   //|  mov L:RB->top, RD
   //|  xor RD, RD
@@ -3153,7 +3169,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  movsd xmm0, qword [BASE]
   //|  sseconst_abs xmm1, RDa
   dasm_put(Dst, 3476, Dt1(->base), Dt1(->top), Dt1(->cframe), LUA_YIELD, Dt1(->status), 1+1, LJ_TISNUM, (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32));
-#line 1961 "vm_x86.dasc"
+#line 1977 "vm_x86.dasc"
   //|  andps xmm0, xmm1
   //|->fff_resxmm0:
   //|  mov PC, [BASE-4]
@@ -3240,13 +3256,13 @@ static void build_subroutines(BuildCtx *ctx)
   //|
   //|  math_round floor
   dasm_put(Dst, 3547, 1+1, FRAME_TYPE, LJ_TNIL, LJ_TISNUM);
-#line 2046 "vm_x86.dasc"
+#line 2062 "vm_x86.dasc"
   //|  math_round ceil
   //|
   //|.if SSE
   //|.ffunc_nsse math_sqrt, sqrtsd; jmp ->fff_resxmm0
   dasm_put(Dst, 3670, LJ_TISNUM, 1+1, LJ_TISNUM);
-#line 2050 "vm_x86.dasc"
+#line 2066 "vm_x86.dasc"
   //|.else
   //|.ffunc_n math_sqrt; fsqrt; jmp ->fff_resn
   //|.endif
@@ -3259,17 +3275,17 @@ static void build_subroutines(BuildCtx *ctx)
   //|.ffunc_n math_log10, fldlg2;	fyl2x;		jmp ->fff_resn
   //|.ffunc_n math_exp;	call ->vm_exp_x87;	jmp ->fff_resn
   dasm_put(Dst, 3729, 1+1, LJ_TISNUM, 1+1, LJ_TISNUM);
-#line 2061 "vm_x86.dasc"
+#line 2077 "vm_x86.dasc"
   //|
   //|.ffunc_n math_sin;	fsin;			jmp ->fff_resn
   //|.ffunc_n math_cos;	fcos;			jmp ->fff_resn
   dasm_put(Dst, 3803, 1+1, LJ_TISNUM, 1+1, LJ_TISNUM);
-#line 2064 "vm_x86.dasc"
+#line 2080 "vm_x86.dasc"
   //|.ffunc_n math_tan;	fptan; fpop;		jmp ->fff_resn
   //|
   //|.ffunc_n math_asin
   dasm_put(Dst, 3860, 1+1, LJ_TISNUM, 1+1, LJ_TISNUM, 1+1);
-#line 2067 "vm_x86.dasc"
+#line 2083 "vm_x86.dasc"
   //|  fdup; fmul st0; fld1; fsubrp st1; fsqrt; fpatan
   //|  jmp ->fff_resn
   //|.ffunc_n math_acos
@@ -3277,7 +3293,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  jmp ->fff_resn
   //|.ffunc_n math_atan;	fld1; fpatan;		jmp ->fff_resn
   dasm_put(Dst, 3927, LJ_TISNUM, 1+1, LJ_TISNUM, 1+1, LJ_TISNUM);
-#line 2073 "vm_x86.dasc"
+#line 2089 "vm_x86.dasc"
   //|
   //|.macro math_extern, func
   //|.if SSE
@@ -3303,7 +3319,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|  math_extern cosh
   //|  math_extern tanh
   dasm_put(Dst, 4017, 1+1, LJ_TISNUM, 1+1, LJ_TISNUM);
-#line 2097 "vm_x86.dasc"
+#line 2113 "vm_x86.dasc"
   //|
   //|->ff_math_deg:
   //|.if SSE
@@ -3320,10 +3336,10 @@ static void build_subroutines(BuildCtx *ctx)
   //|
   //|.ffunc_nn math_atan2;	fpatan;		jmp ->fff_resn
   dasm_put(Dst, 4105, 1+1, LJ_TISNUM, 1+1, LJ_TISNUM, Dt8(->upvalue[0]));
-#line 2112 "vm_x86.dasc"
+#line 2128 "vm_x86.dasc"
   //|.ffunc_nnr math_ldexp;	fscale; fpop1;	jmp ->fff_resn
   dasm_put(Dst, 4183, 2+1, LJ_TISNUM, LJ_TISNUM, 2+1, LJ_TISNUM, LJ_TISNUM);
-#line 2113 "vm_x86.dasc"
+#line 2129 "vm_x86.dasc"
   //|
   //|.ffunc_1 math_frexp
   //|  mov RB, [BASE+4]
@@ -3358,7 +3374,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|.if SSE
   //|  xorps xmm0, xmm0; jmp <2
   dasm_put(Dst, 4250, 1+1, LJ_TISNUM, 1+2);
-#line 2146 "vm_x86.dasc"
+#line 2162 "vm_x86.dasc"
   //|.else
   //|  fldz; jmp <2
   //|.endif
@@ -3403,7 +3419,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|2:
   //|  mov RD, 1+2
   dasm_put(Dst, 4387, (unsigned int)(U64x(43500000,00000000)), (unsigned int)((U64x(43500000,00000000))>>32), 1+1, LJ_TISNUM);
-#line 2189 "vm_x86.dasc"
+#line 2205 "vm_x86.dasc"
   //|  jmp ->fff_res
   //|3:
   //|  xor RB, 0x80000000; mov [BASE+4], RB	// Flip sign of fraction.
@@ -3416,9 +3432,9 @@ static void build_subroutines(BuildCtx *ctx)
   //|.endif
   //|
   //|.ffunc_nnr math_fmod
-  //|1: ; fprem; fnstsw ax; sahf; jp <1
+  //|1: ; fprem; fnstsw ax; and ax, 0x400; jnz <1
   dasm_put(Dst, 4523, 1+2, 2+1, LJ_TISNUM, LJ_TISNUM);
-#line 2202 "vm_x86.dasc"
+#line 2218 "vm_x86.dasc"
   //|  fpop1
   //|  jmp ->fff_resn
   //|
@@ -3501,10 +3517,10 @@ static void build_subroutines(BuildCtx *ctx)
   //|
   //|  math_minmax math_min, cmovg, fcmovnbe, minsd
   dasm_put(Dst, 4590, 2+1, LJ_TISNUM, LJ_TISNUM, LJ_TISNUM);
-#line 2283 "vm_x86.dasc"
+#line 2299 "vm_x86.dasc"
   //|  math_minmax math_max, cmovl, fcmovbe, maxsd
-  dasm_put(Dst, 4665, LJ_TISNUM, LJ_TISNUM, LJ_TISNUM);
-#line 2284 "vm_x86.dasc"
+  dasm_put(Dst, 4668, LJ_TISNUM, LJ_TISNUM, LJ_TISNUM);
+#line 2300 "vm_x86.dasc"
   //|.if not SSE
   //|9:
   //|  fpop; jmp ->fff_fallback
@@ -3526,8 +3542,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|.ffunc string_byte			// Only handle the 1-arg case here.
   //|  cmp NARGS:RD, 1+1;  jne ->fff_fallback
   //|  cmp dword [BASE+4], LJ_TSTR;  jne ->fff_fallback
-  dasm_put(Dst, 4754, 1+1, LJ_TSTR, Dt5(->len), 1+1);
-#line 2305 "vm_x86.dasc"
+  dasm_put(Dst, 4757, 1+1, LJ_TSTR, Dt5(->len), 1+1);
+#line 2321 "vm_x86.dasc"
   //|  mov STR:RB, [BASE]
   //|  mov PC, [BASE-4]
   //|  cmp dword STR:RB->len, 1
@@ -3545,8 +3561,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  ffgccheck
   //|  cmp NARGS:RD, 1+1;  jne ->fff_fallback	// *Exactly* 1 arg.
   //|  cmp dword [BASE+4], LJ_TISNUM
-  dasm_put(Dst, 4824, LJ_TSTR, Dt5(->len), Dt5([1]), DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), 1+1);
-#line 2322 "vm_x86.dasc"
+  dasm_put(Dst, 4827, LJ_TSTR, Dt5(->len), Dt5([1]), DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), 1+1);
+#line 2338 "vm_x86.dasc"
   //|.if DUALNUM
   //|  jne ->fff_fallback
   //|  mov RB, dword [BASE]
@@ -3593,8 +3609,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  ffgccheck
   //|  mov TMP2, -1
   //|  cmp NARGS:RD, 1+2;  jb ->fff_fallback
-  dasm_put(Dst, 4888, LJ_TISNUM, Dt1(->base), Dt1(->base), LJ_TSTR, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), 1+2);
-#line 2368 "vm_x86.dasc"
+  dasm_put(Dst, 4891, LJ_TISNUM, Dt1(->base), Dt1(->base), LJ_TSTR, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), 1+2);
+#line 2384 "vm_x86.dasc"
   //|  jna >1
   //|  cmp dword [BASE+20], LJ_TISNUM
   //|.if DUALNUM
@@ -3638,8 +3654,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  jle >7
   //|3:
   //|  mov STR:RB, TMP3
-  dasm_put(Dst, 5014, LJ_TISNUM, LJ_TSTR, LJ_TISNUM, Dt5(->len));
-#line 2411 "vm_x86.dasc"
+  dasm_put(Dst, 5017, LJ_TISNUM, LJ_TSTR, LJ_TISNUM, Dt5(->len));
+#line 2427 "vm_x86.dasc"
   //|  sub RC, RA				// start > end?
   //|  jl ->fff_emptystr
   //|  lea RB, [STR:RB+RA+#STR-1]
@@ -3668,8 +3684,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  jg <3				// start > 0?
   //|8:  // Underflow.
   //|  mov RA, 1				// start = 1
-  dasm_put(Dst, 5097, sizeof(GCstr)-1);
-#line 2439 "vm_x86.dasc"
+  dasm_put(Dst, 5100, sizeof(GCstr)-1);
+#line 2455 "vm_x86.dasc"
   //|  jmp <3
   //|
   //|->fff_emptystr:  // Range underflow.
@@ -3682,8 +3698,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  cmp dword [BASE+4], LJ_TSTR;  jne ->fff_fallback
   //|  cmp dword [BASE+12], LJ_TISNUM
   //|  mov STR:RB, [BASE]
-  dasm_put(Dst, 5168, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), 2+1, LJ_TSTR, LJ_TISNUM);
-#line 2451 "vm_x86.dasc"
+  dasm_put(Dst, 5171, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), 2+1, LJ_TSTR, LJ_TISNUM);
+#line 2467 "vm_x86.dasc"
   //|.if DUALNUM
   //|  jne ->fff_fallback
   //|  mov RC, dword [BASE+8]
@@ -3718,8 +3734,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  jmp ->fff_newstr
   //|
   //|.ffunc_1 string_reverse
-  dasm_put(Dst, 5227, Dt5(->len), DISPATCH_GL(tmpbuf.sz), Dt5([1]), DISPATCH_GL(tmpbuf.buf), DISPATCH_GL(tmpbuf.buf));
-#line 2485 "vm_x86.dasc"
+  dasm_put(Dst, 5230, Dt5(->len), DISPATCH_GL(tmpbuf.sz), Dt5([1]), DISPATCH_GL(tmpbuf.buf), DISPATCH_GL(tmpbuf.buf));
+#line 2501 "vm_x86.dasc"
   //|  ffgccheck
   //|  cmp dword [BASE+4], LJ_TSTR;  jne ->fff_fallback
   //|  mov STR:RB, [BASE]
@@ -3729,8 +3745,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  cmp [DISPATCH+DISPATCH_GL(tmpbuf.sz)], RC;  jb ->fff_fallback_1
   //|  add RB, #STR
   //|  mov TMP2, PC			// Need another temp register.
-  dasm_put(Dst, 5303, 1+1, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), LJ_TSTR, Dt5(->len), DISPATCH_GL(tmpbuf.sz), sizeof(GCstr));
-#line 2494 "vm_x86.dasc"
+  dasm_put(Dst, 5306, 1+1, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), LJ_TSTR, Dt5(->len), DISPATCH_GL(tmpbuf.sz), sizeof(GCstr));
+#line 2510 "vm_x86.dasc"
   //|.if X64
   //|  mov TMP3, RC
   //|.else
@@ -3781,12 +3797,12 @@ static void build_subroutines(BuildCtx *ctx)
   //|.endmacro
   //|
   //|ffstring_case string_lower, 0x41, 0x5a
-  dasm_put(Dst, 5360, DISPATCH_GL(tmpbuf.buf), 1+1, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), LJ_TSTR);
-#line 2544 "vm_x86.dasc"
+  dasm_put(Dst, 5363, DISPATCH_GL(tmpbuf.buf), 1+1, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), LJ_TSTR);
+#line 2560 "vm_x86.dasc"
   //|ffstring_case string_upper, 0x61, 0x7a
-  dasm_put(Dst, 5438, Dt5(->len), DISPATCH_GL(tmpbuf.sz), sizeof(GCstr), DISPATCH_GL(tmpbuf.buf));
-  dasm_put(Dst, 5524, 1+1, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), LJ_TSTR, Dt5(->len), DISPATCH_GL(tmpbuf.sz), sizeof(GCstr), DISPATCH_GL(tmpbuf.buf));
-#line 2545 "vm_x86.dasc"
+  dasm_put(Dst, 5441, Dt5(->len), DISPATCH_GL(tmpbuf.sz), sizeof(GCstr), DISPATCH_GL(tmpbuf.buf));
+  dasm_put(Dst, 5527, 1+1, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), LJ_TSTR, Dt5(->len), DISPATCH_GL(tmpbuf.sz), sizeof(GCstr), DISPATCH_GL(tmpbuf.buf));
+#line 2561 "vm_x86.dasc"
   //|
   //|//-- Table library ------------------------------------------------------
   //|
@@ -3809,8 +3825,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|
   //|.define TOBIT_BIAS, 0x59c00000	// 2^52 + 2^51 (float, not double!).
   //|
-  //|.macro .ffunc_bit, name, kind
-  //|  .ffunc_1 name
+  //|.macro .ffunc_bit, name, kind, fdef
+  //|  fdef name
   //|.if kind == 2
   //|.if SSE
   //|  sseconst_tobit xmm1, RBa
@@ -3853,9 +3869,13 @@ static void build_subroutines(BuildCtx *ctx)
   //|2:
   //|.endmacro
   //|
+  //|.macro .ffunc_bit, name, kind
+  //|  .ffunc_bit name, kind, .ffunc_1
+  //|.endmacro
+  //|
   //|.ffunc_bit bit_tobit, 0
-  dasm_put(Dst, 5593, 1+1, LJ_TTAB);
-#line 2612 "vm_x86.dasc"
+  dasm_put(Dst, 5596, 1+1, LJ_TTAB);
+#line 2632 "vm_x86.dasc"
   //|.if DUALNUM or SSE
   //|.if not SSE
   //|  mov RB, ARG1
@@ -3900,22 +3920,22 @@ static void build_subroutines(BuildCtx *ctx)
   //|.endmacro
   //|
   //|.ffunc_bit_op bit_band, and
-  dasm_put(Dst, 5684, 1+1, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), 1+1, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), LJ_TISNUM);
-#line 2656 "vm_x86.dasc"
+  dasm_put(Dst, 5687, 1+1, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), 1+1, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), LJ_TISNUM);
+#line 2676 "vm_x86.dasc"
   //|.ffunc_bit_op bit_bor, or
-  dasm_put(Dst, 5759, LJ_TISNUM, 1+1, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), LJ_TISNUM);
-#line 2657 "vm_x86.dasc"
+  dasm_put(Dst, 5762, LJ_TISNUM, 1+1, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), LJ_TISNUM);
+#line 2677 "vm_x86.dasc"
   //|.ffunc_bit_op bit_bxor, xor
-  dasm_put(Dst, 5880, LJ_TISNUM, 1+1, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), LJ_TISNUM);
-#line 2658 "vm_x86.dasc"
+  dasm_put(Dst, 5883, LJ_TISNUM, 1+1, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), LJ_TISNUM);
+#line 2678 "vm_x86.dasc"
   //|
   //|.ffunc_bit bit_bswap, 1
   //|  bswap RB
   //|  jmp ->fff_resbit
   //|
   //|.ffunc_bit bit_bnot, 1
-  dasm_put(Dst, 5980, LJ_TISNUM, 1+1, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), 1+1);
-#line 2664 "vm_x86.dasc"
+  dasm_put(Dst, 5983, LJ_TISNUM, 1+1, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), 1+1);
+#line 2684 "vm_x86.dasc"
   //|  not RB
   //|.if DUALNUM
   //|  jmp ->fff_resbit
@@ -3936,7 +3956,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|
   //|.macro .ffunc_bit_sh, name, ins
   //|.if DUALNUM
-  //|  .ffunc_bit name, 1
+  //|  .ffunc_bit name, 1, .ffunc_2
   //|  // Note: no inline conversion from number for 2nd argument!
   //|  cmp dword [BASE+12], LJ_TISNUM; jne ->fff_fallback
   //|  mov RA, dword [BASE+8]
@@ -3962,23 +3982,23 @@ static void build_subroutines(BuildCtx *ctx)
   //|.endmacro
   //|
   //|.ffunc_bit_sh bit_lshift, shl
-  dasm_put(Dst, 6073, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), 2+1, LJ_TISNUM, LJ_TISNUM);
-#line 2710 "vm_x86.dasc"
+  dasm_put(Dst, 6076, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), 2+1, LJ_TISNUM, LJ_TISNUM);
+#line 2730 "vm_x86.dasc"
   //|.ffunc_bit_sh bit_rshift, shr
   //|.ffunc_bit_sh bit_arshift, sar
-  dasm_put(Dst, 6156, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), 2+1, LJ_TISNUM, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32));
-#line 2712 "vm_x86.dasc"
+  dasm_put(Dst, 6159, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), 2+1, LJ_TISNUM, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32));
+#line 2732 "vm_x86.dasc"
   //|.ffunc_bit_sh bit_rol, rol
-  dasm_put(Dst, 6280, 2+1, LJ_TISNUM, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), 2+1, LJ_TISNUM);
-#line 2713 "vm_x86.dasc"
+  dasm_put(Dst, 6283, 2+1, LJ_TISNUM, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), 2+1, LJ_TISNUM);
+#line 2733 "vm_x86.dasc"
   //|.ffunc_bit_sh bit_ror, ror
   //|
   //|//-----------------------------------------------------------------------
   //|
   //|->fff_fallback_2:
   //|  mov NARGS:RD, 1+2			// Other args are ignored, anyway.
-  dasm_put(Dst, 6371, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), 2+1, LJ_TISNUM, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32));
-#line 2719 "vm_x86.dasc"
+  dasm_put(Dst, 6374, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32), 2+1, LJ_TISNUM, LJ_TISNUM, (unsigned int)(U64x(43380000,00000000)), (unsigned int)((U64x(43380000,00000000))>>32));
+#line 2739 "vm_x86.dasc"
   //|  jmp ->fff_fallback
   //|->fff_fallback_1:
   //|  mov NARGS:RD, 1+1			// Other args are ignored, anyway.
@@ -4012,8 +4032,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mov LFUNC:RB, [BASE-8]
   //|  jne ->vm_call_tail			// Returned -1?
   //|  ins_callt				// Returned 0: retry fast path.
-  dasm_put(Dst, 6499, 1+2, 1+1, Dt1(->base), 8*LUA_MINSTACK, Dt1(->top), Dt1(->maxstack), Dt8(->f), Dt1(->base), Dt1(->top));
-#line 2752 "vm_x86.dasc"
+  dasm_put(Dst, 6502, 1+2, 1+1, Dt1(->base), 8*LUA_MINSTACK, Dt1(->top), Dt1(->maxstack), Dt8(->f), Dt1(->base), Dt1(->top));
+#line 2772 "vm_x86.dasc"
   //|
   //|// Reconstruct previous base for vmeta_call during tailcall.
   //|->vm_call_tail:
@@ -4052,8 +4072,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mov BASE, L:RB->base
   //|  mov RD, L:RB->top
   //|  sub RD, BASE
-  dasm_put(Dst, 6589, Dt7(->pc), FRAME_TYPE, LUA_MINSTACK, Dt1(->base), Dt1(->base), Dt1(->top), Dt1(->base), Dt1(->top));
-#line 2790 "vm_x86.dasc"
+  dasm_put(Dst, 6592, Dt7(->pc), FRAME_TYPE, LUA_MINSTACK, Dt1(->base), Dt1(->base), Dt1(->top), Dt1(->base), Dt1(->top));
+#line 2810 "vm_x86.dasc"
   //|  shr RD, 3
   //|  add NARGS:RD, 1
   //|  mov RBa, TMPa
@@ -4086,8 +4106,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|
   //|->vm_inshook:			// Dispatch target for instr/line hooks.
   //|  movzx RD, byte [DISPATCH+DISPATCH_GL(hookmask)]
-  dasm_put(Dst, 6715, DISPATCH_GL(hookmask), HOOK_VMEVENT, HOOK_ACTIVE, LUA_MASKLINE|LUA_MASKCOUNT, DISPATCH_GL(hookcount), DISPATCH_GL(hookmask), HOOK_ACTIVE);
-#line 2822 "vm_x86.dasc"
+  dasm_put(Dst, 6718, DISPATCH_GL(hookmask), HOOK_VMEVENT, HOOK_ACTIVE, LUA_MASKLINE|LUA_MASKCOUNT, DISPATCH_GL(hookcount), DISPATCH_GL(hookmask), HOOK_ACTIVE);
+#line 2842 "vm_x86.dasc"
   //|  test RDL, HOOK_ACTIVE		// Hook already active?
   //|  jnz >5
   //|
@@ -4119,8 +4139,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|
   //|->cont_hook:				// Continue from hook yield.
   //|  add PC, 4
-  dasm_put(Dst, 6784, DISPATCH_GL(hookmask), HOOK_ACTIVE, LUA_MASKLINE|LUA_MASKCOUNT, DISPATCH_GL(hookcount), LUA_MASKLINE, Dt1(->base), Dt1(->base), GG_DISP2STATIC);
-#line 2853 "vm_x86.dasc"
+  dasm_put(Dst, 6787, DISPATCH_GL(hookmask), HOOK_ACTIVE, LUA_MASKLINE|LUA_MASKCOUNT, DISPATCH_GL(hookcount), LUA_MASKLINE, Dt1(->base), Dt1(->base), GG_DISP2STATIC);
+#line 2873 "vm_x86.dasc"
   //|  mov RA, [RB-24]
   //|  mov MULTRES, RA			// Restore MULTRES for *M ins.
   //|  jmp <4
@@ -4170,8 +4190,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mov RAa, RDa
   //|  mov RD, L:RB->top
   //|  sub RD, BASE
-  dasm_put(Dst, 6869, Dt7(->pc), PC2PROTO(framesize), Dt1(->base), Dt1(->top), GG_DISP2J, DISPATCH_J(L), Dt1(->base), Dt1(->top), Dt1(->base), Dt1(->top));
-#line 2902 "vm_x86.dasc"
+  dasm_put(Dst, 6872, Dt7(->pc), PC2PROTO(framesize), Dt1(->base), Dt1(->top), GG_DISP2J, DISPATCH_J(L), Dt1(->base), Dt1(->top), Dt1(->base), Dt1(->top));
+#line 2922 "vm_x86.dasc"
   //|  mov RBa, RAa
   //|  movzx RA, PC_RA
   //|  shr RD, 3
@@ -4284,8 +4304,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mov r14, CSAVE_4
   //|.else
   //|  add rsp, 16			// Reposition stack to C frame.
-  dasm_put(Dst, 6998, DISPATCH_GL(vmstate), DISPATCH_GL(vmstate), ~LJ_VMST_EXIT, DISPATCH_J(exitno), DISPATCH_J(parent), 16*8, DISPATCH_GL(jit_L), DISPATCH_GL(jit_base), DISPATCH_J(L), DISPATCH_GL(jit_L), Dt1(->base), GG_DISP2J, Dt1(->cframe), CFRAME_RAWMASK, CFRAME_OFS_L, Dt1(->base), CFRAME_OFS_PC);
-#line 3014 "vm_x86.dasc"
+  dasm_put(Dst, 7001, DISPATCH_GL(vmstate), DISPATCH_GL(vmstate), ~LJ_VMST_EXIT, DISPATCH_J(exitno), DISPATCH_J(parent), 16*8, DISPATCH_GL(jit_L), DISPATCH_GL(jit_base), DISPATCH_J(L), DISPATCH_GL(jit_L), Dt1(->base), GG_DISP2J, Dt1(->cframe), CFRAME_RAWMASK, CFRAME_OFS_L, Dt1(->base), CFRAME_OFS_PC);
+#line 3034 "vm_x86.dasc"
   //|1:
   //|.endif
   //|  mov r13, TMPa
@@ -4392,12 +4412,12 @@ static void build_subroutines(BuildCtx *ctx)
   //|.endmacro
   //|
   //|  vm_round vm_floor, 0, 0x0400, 0xf7ff
-  dasm_put(Dst, 7260, Dt7(->pc), PC2PROTO(k), DISPATCH_GL(jit_L), DISPATCH_GL(vmstate), ~LJ_VMST_INTERP, BC_FUNCF, (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32), (unsigned int)(U64x(43300000,00000000)), (unsigned int)((U64x(43300000,00000000))>>32));
-#line 3120 "vm_x86.dasc"
+  dasm_put(Dst, 7263, Dt7(->pc), PC2PROTO(k), DISPATCH_GL(jit_L), DISPATCH_GL(vmstate), ~LJ_VMST_INTERP, BC_FUNCF, (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32), (unsigned int)(U64x(43300000,00000000)), (unsigned int)((U64x(43300000,00000000))>>32));
+#line 3140 "vm_x86.dasc"
   //|  vm_round vm_ceil,  1, 0x0800, 0xfbff
   //|  vm_round vm_trunc, 2, 0x0c00, 0xffff
-  dasm_put(Dst, 7397, (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32), (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32), (unsigned int)(U64x(43300000,00000000)), (unsigned int)((U64x(43300000,00000000))>>32), (unsigned int)(U64x(bff00000,00000000)), (unsigned int)((U64x(bff00000,00000000))>>32), (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32), (unsigned int)(U64x(43300000,00000000)), (unsigned int)((U64x(43300000,00000000))>>32));
-#line 3122 "vm_x86.dasc"
+  dasm_put(Dst, 7400, (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32), (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32), (unsigned int)(U64x(43300000,00000000)), (unsigned int)((U64x(43300000,00000000))>>32), (unsigned int)(U64x(bff00000,00000000)), (unsigned int)((U64x(bff00000,00000000))>>32), (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32), (unsigned int)(U64x(43300000,00000000)), (unsigned int)((U64x(43300000,00000000))>>32));
+#line 3142 "vm_x86.dasc"
   //|
   //|// FP modulo x%y. Called by BC_MOD* and vm_arith.
   //|->vm_mod:
@@ -4486,8 +4506,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  fst expscratch				// Caveat: overwrites ARG1.
   //|  cmp expscratch, 0x7f800000; je >1		// Special case: e^+Inf = +Inf
   //|  cmp expscratch, 0xff800000; je >2		// Special case: e^-Inf = 0
-  dasm_put(Dst, 7548, (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32), (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32), (unsigned int)(U64x(43300000,00000000)), (unsigned int)((U64x(43300000,00000000))>>32), (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32));
-#line 3210 "vm_x86.dasc"
+  dasm_put(Dst, 7551, (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32), (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32), (unsigned int)(U64x(43300000,00000000)), (unsigned int)((U64x(43300000,00000000))>>32), (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32));
+#line 3230 "vm_x86.dasc"
   //|->vm_exp2raw:  // Entry point for vm_pow. Without +-Inf check.
   //|  fdup; frndint; fsub st1, st0; fxch		// Split into frac/int part.
   //|  f2xm1; fld1; faddp st1; fscale; fpop1	// ==> (2^frac-1 +1) << int
@@ -4609,8 +4629,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  jmp <1
   //|2:
   //|  shr eax, 1; jz >5
-  dasm_put(Dst, 7796);
-#line 3331 "vm_x86.dasc"
+  dasm_put(Dst, 7799);
+#line 3351 "vm_x86.dasc"
   //|  movaps xmm1, xmm0
   //|3:  // Handle trailing bits.
   //|  mulsd xmm0, xmm0
@@ -4628,8 +4648,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  neg eax
   //|  call <1
   //|  sseconst_1 xmm1, RDa
-  dasm_put(Dst, 7906, (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32));
-#line 3348 "vm_x86.dasc"
+  dasm_put(Dst, 7909, (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32));
+#line 3368 "vm_x86.dasc"
   //|  divsd xmm1, xmm0
   //|  movaps xmm0, xmm1
   //|  ret
@@ -4694,8 +4714,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  sseconst_abs xmm2, RDa
   //|  andpd xmm0, xmm2				// |x|
   //|  sseconst_1 xmm2, RDa
-  dasm_put(Dst, 7972, (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32), (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32), (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32), (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32));
-#line 3412 "vm_x86.dasc"
+  dasm_put(Dst, 7975, (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32), (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32), (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32), (unsigned int)(U64x(3ff00000,00000000)), (unsigned int)((U64x(3ff00000,00000000))>>32));
+#line 3432 "vm_x86.dasc"
   //|  ucomisd xmm0, xmm2; je <1			// +-1^+-Inf ==> 1
   //|  movmskpd eax, xmm1
   //|  xorps xmm0, xmm0
@@ -4726,8 +4746,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  .endif
   //|  cmp fpmop, 1; jb ->vm_floor; je ->vm_ceil
   //|  cmp fpmop, 3; jb ->vm_trunc; ja >2
-  dasm_put(Dst, 8160, (unsigned int)(U64x(7ff00000,00000000)), (unsigned int)((U64x(7ff00000,00000000))>>32));
-#line 3442 "vm_x86.dasc"
+  dasm_put(Dst, 8163, (unsigned int)(U64x(7ff00000,00000000)), (unsigned int)((U64x(7ff00000,00000000))>>32));
+#line 3462 "vm_x86.dasc"
   //|  sqrtsd xmm0, xmm0; ret
   //|2:
   //|  .if X64WIN
@@ -4749,16 +4769,16 @@ static void build_subroutines(BuildCtx *ctx)
   //|  jmp >7
   //|2: ; cmp fpmop, 7; je >1; ja >2
   //|  fldln2; fxch; fyl2x; jmp >7
-  dasm_put(Dst, 8258);
-#line 3463 "vm_x86.dasc"
+  dasm_put(Dst, 8261);
+#line 3483 "vm_x86.dasc"
   //|1: ; fld1; fxch; fyl2x; jmp >7
   //|2: ; cmp fpmop, 9; je >1; ja >2
   //|  fldlg2; fxch; fyl2x; jmp >7
   //|1: ; fsin; jmp >7
   //|2: ; cmp fpmop, 11; je >1; ja >9
   //|   fcos; jmp >7
-  dasm_put(Dst, 8326);
-#line 3469 "vm_x86.dasc"
+  dasm_put(Dst, 8329);
+#line 3489 "vm_x86.dasc"
   //|1: ; fptan; fpop
   //|7:
   //|  .if X64WIN
@@ -4835,8 +4855,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  mulsd xmm0, xmm1; ret
   //|1: ; divsd xmm0, xmm1; ret
   //|2: ; cmp foldop, 5; jb ->vm_mod; je ->vm_pow
-  dasm_put(Dst, 8401);
-#line 3545 "vm_x86.dasc"
+  dasm_put(Dst, 8404);
+#line 3565 "vm_x86.dasc"
   //|  cmp foldop, 7; je >1; ja >2
   //|  sseconst_sign xmm1, RDa; xorps xmm0, xmm1; ret
   //|1: ; sseconst_abs xmm1, RDa; andps xmm0, xmm1; ret
@@ -4865,8 +4885,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|  ret
   //|1: ; fxch; fscale; fpop1; jmp <7
   //|2: ; cmp foldop, 11; je >1; ja >9
-  dasm_put(Dst, 8501, (unsigned int)(U64x(80000000,00000000)), (unsigned int)((U64x(80000000,00000000))>>32), (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32));
-#line 3573 "vm_x86.dasc"
+  dasm_put(Dst, 8504, (unsigned int)(U64x(80000000,00000000)), (unsigned int)((U64x(80000000,00000000))>>32), (unsigned int)(U64x(7fffffff,ffffffff)), (unsigned int)((U64x(7fffffff,ffffffff))>>32));
+#line 3593 "vm_x86.dasc"
   //|  minsd xmm0, xmm1; ret
   //|1: ; maxsd xmm0, xmm1; ret
   //|9: ; int3				// Bad op.
@@ -4980,12 +5000,12 @@ static void build_subroutines(BuildCtx *ctx)
   //|//-----------------------------------------------------------------------
   //|
   //|->assert_bad_for_arg_type:
-  dasm_put(Dst, 8620);
-#line 3686 "vm_x86.dasc"
+  dasm_put(Dst, 8623);
+#line 3706 "vm_x86.dasc"
 #ifdef LUA_USE_ASSERT
   //|  int3
-  dasm_put(Dst, 8673);
-#line 3688 "vm_x86.dasc"
+  dasm_put(Dst, 8676);
+#line 3708 "vm_x86.dasc"
 #endif
   //|  int3
   //|
@@ -4998,7 +5018,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|.if FFI
   //|.type CTSTATE, CTState, PC
 #define DtE(_V) (int)(ptrdiff_t)&(((CTState *)0)_V)
-#line 3699 "vm_x86.dasc"
+#line 3719 "vm_x86.dasc"
   //|.if not X64
   //|  sub esp, 16			// Leave room for SAVE_ERRF etc.
   //|.endif
@@ -5029,8 +5049,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|.endif
   //|  mov CTSTATE->cb.stack, rax
   //|  mov CARG2, rsp
-  dasm_put(Dst, 8675, GG_G2DISP, Dt2(->ctype_state), DtE(->cb.slot), DtE(->cb.gpr[0]), DtE(->cb.gpr[1]), DtE(->cb.gpr[2]), DtE(->cb.gpr[3]), DtE(->cb.fpr[0]), DtE(->cb.fpr[1]), DtE(->cb.fpr[2]), DtE(->cb.fpr[3]), CFRAME_SIZE, DtE(->cb.gpr[4]), DtE(->cb.gpr[5]), DtE(->cb.fpr[4]), DtE(->cb.fpr[5]), DtE(->cb.fpr[6]), DtE(->cb.fpr[7]), DtE(->cb.stack));
-#line 3729 "vm_x86.dasc"
+  dasm_put(Dst, 8678, GG_G2DISP, Dt2(->ctype_state), DtE(->cb.slot), DtE(->cb.gpr[0]), DtE(->cb.gpr[1]), DtE(->cb.gpr[2]), DtE(->cb.gpr[3]), DtE(->cb.fpr[0]), DtE(->cb.fpr[1]), DtE(->cb.fpr[2]), DtE(->cb.fpr[3]), CFRAME_SIZE, DtE(->cb.gpr[4]), DtE(->cb.gpr[5]), DtE(->cb.fpr[4]), DtE(->cb.fpr[5]), DtE(->cb.fpr[6]), DtE(->cb.fpr[7]), DtE(->cb.stack));
+#line 3749 "vm_x86.dasc"
   //|.else
   //|  lea eax, [esp+CFRAME_SIZE+16]
   //|  mov CTSTATE->cb.gpr[0], FCARG1
@@ -5100,7 +5120,7 @@ static void build_subroutines(BuildCtx *ctx)
   //|.if X64
   //|  .type CCSTATE, CCallState, rbx
 #define DtF(_V) (int)(ptrdiff_t)&(((CCallState *)0)_V)
-#line 3797 "vm_x86.dasc"
+#line 3817 "vm_x86.dasc"
   //|  push rbp; mov rbp, rsp; push rbx; mov CCSTATE, CARG1
   //|.else
   //|  .type CCSTATE, CCallState, ebx
@@ -5125,8 +5145,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|1:
   //|.if X64
   //|  mov rax, [CCSTATE+rcx*8+offsetof(CCallState, stack)]
-  dasm_put(Dst, 8784, DISPATCH_GL(vmstate), ~LJ_VMST_INTERP, Dt1(->base), Dt1(->top), Dt7(->pc), DISPATCH_GL(ctype_state), DtE(->L), Dt1(->base), Dt1(->top), DtE(->cb.gpr[0]), DtE(->cb.fpr[0]), DtF(->spadj), DtF(->nsp));
-#line 3821 "vm_x86.dasc"
+  dasm_put(Dst, 8787, DISPATCH_GL(vmstate), ~LJ_VMST_INTERP, Dt1(->base), Dt1(->top), Dt7(->pc), DISPATCH_GL(ctype_state), DtE(->L), Dt1(->base), Dt1(->top), DtE(->cb.gpr[0]), DtE(->cb.fpr[0]), DtF(->spadj), DtF(->nsp));
+#line 3841 "vm_x86.dasc"
   //|  mov [rsp+rcx*8+CCALL_SPS_EXTRA*8], rax
   //|.else
   //|  mov eax, [CCSTATE+ecx*4+offsetof(CCallState, stack)]
@@ -5154,8 +5174,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|.if not X64WIN
   //|  cmp eax, 4; jbe >5
   //|  movaps xmm4, CCSTATE->fpr[4]
-  dasm_put(Dst, 8915, offsetof(CCallState, stack), CCALL_SPS_EXTRA*8, DtF(->nfpr), DtF(->gpr[0]), DtF(->gpr[1]), DtF(->gpr[2]), DtF(->gpr[3]), DtF(->gpr[4]), DtF(->gpr[5]), DtF(->fpr[0]), DtF(->fpr[1]), DtF(->fpr[2]), DtF(->fpr[3]));
-#line 3848 "vm_x86.dasc"
+  dasm_put(Dst, 8918, offsetof(CCallState, stack), CCALL_SPS_EXTRA*8, DtF(->nfpr), DtF(->gpr[0]), DtF(->gpr[1]), DtF(->gpr[2]), DtF(->gpr[3]), DtF(->gpr[4]), DtF(->gpr[5]), DtF(->fpr[0]), DtF(->fpr[1]), DtF(->fpr[2]), DtF(->fpr[3]));
+#line 3868 "vm_x86.dasc"
   //|  movaps xmm5, CCSTATE->fpr[5]
   //|  movaps xmm6, CCSTATE->fpr[6]
   //|  movaps xmm7, CCSTATE->fpr[7]
@@ -5200,8 +5220,8 @@ static void build_subroutines(BuildCtx *ctx)
   //|// Note: vm_ffi_call must be the last function in this object file!
   //|
   //|//-----------------------------------------------------------------------
-  dasm_put(Dst, 8996, DtF(->fpr[4]), DtF(->fpr[5]), DtF(->fpr[6]), DtF(->fpr[7]), DtF(->func), DtF(->gpr[0]), DtF(->fpr[0]), DtF(->gpr[1]), DtF(->fpr[1]));
-#line 3892 "vm_x86.dasc"
+  dasm_put(Dst, 8999, DtF(->fpr[4]), DtF(->fpr[5]), DtF(->fpr[6]), DtF(->fpr[7]), DtF(->func), DtF(->gpr[0]), DtF(->fpr[0]), DtF(->gpr[1]), DtF(->fpr[1]));
+#line 3912 "vm_x86.dasc"
 }
 
 /* Generate the code for a single instruction. */
@@ -5211,7 +5231,7 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
   //|// Note: aligning all instructions does not pay off.
   //|=>defop:
   dasm_put(Dst, 522, defop);
-#line 3900 "vm_x86.dasc"
+#line 3920 "vm_x86.dasc"
 
   switch (op) {
 
@@ -5308,30 +5328,30 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  jmp <6
     //|.else
     //|  jmp_comp jbe, ja, jb, jae, >1
-    dasm_put(Dst, 9042, LJ_TISNUM, LJ_TISNUM);
+    dasm_put(Dst, 9045, LJ_TISNUM, LJ_TISNUM);
     switch (op) {
     case BC_ISLT:
-    dasm_put(Dst, 7392);
+    dasm_put(Dst, 7395);
     break;
     case BC_ISGE:
-    dasm_put(Dst, 9083);
+    dasm_put(Dst, 9086);
     break;
     case BC_ISLE:
-    dasm_put(Dst, 9088);
+    dasm_put(Dst, 9091);
     break;
     case BC_ISGT:
-    dasm_put(Dst, 9093);
+    dasm_put(Dst, 9096);
     break;
     default: break;  /* Shut up GCC. */
     }
-#line 3996 "vm_x86.dasc"
+#line 4016 "vm_x86.dasc"
     //|  movzx RD, PC_RD
     //|  branchPC RD
     //|1:
     //|  ins_next
     //|.endif
-    dasm_put(Dst, 9098, -BCBIAS_J*4);
-#line 4001 "vm_x86.dasc"
+    dasm_put(Dst, 9101, -BCBIAS_J*4);
+#line 4021 "vm_x86.dasc"
     break;
 
   case BC_ISEQV: case BC_ISNEV:
@@ -5344,8 +5364,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  checkint RA, >8
     //|  mov RB, dword [BASE+RD*8]
     //|  cmp RB, dword [BASE+RA*8]
-    dasm_put(Dst, 9131);
-#line 4013 "vm_x86.dasc"
+    dasm_put(Dst, 9134);
+#line 4033 "vm_x86.dasc"
     if (vk) {
       //|  jne >9
     } else {
@@ -5398,19 +5418,19 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|4:
     //|  fcomparepp
     //|.endif
-    dasm_put(Dst, 9139, LJ_TISNUM, LJ_TISNUM);
-#line 4065 "vm_x86.dasc"
+    dasm_put(Dst, 9142, LJ_TISNUM, LJ_TISNUM);
+#line 4085 "vm_x86.dasc"
   iseqne_fp:
     if (vk) {
       //|  jp >2				// Unordered means not equal.
       //|  jne >2
-      dasm_put(Dst, 9175);
-#line 4069 "vm_x86.dasc"
+      dasm_put(Dst, 9178);
+#line 4089 "vm_x86.dasc"
     } else {
       //|  jp >2				// Unordered means not equal.
       //|  je >1
-      dasm_put(Dst, 9184);
-#line 4072 "vm_x86.dasc"
+      dasm_put(Dst, 9187);
+#line 4092 "vm_x86.dasc"
     }
   iseqne_end:
     if (vk) {
@@ -5421,8 +5441,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
       //|.if not FFI
       //|3:
       //|.endif
-      dasm_put(Dst, 9193, -BCBIAS_J*4);
-#line 4082 "vm_x86.dasc"
+      dasm_put(Dst, 9196, -BCBIAS_J*4);
+#line 4102 "vm_x86.dasc"
     } else {
       //|.if not FFI
       //|3:
@@ -5431,18 +5451,18 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
       //|  movzx RD, PC_RD
       //|  branchPC RD
       //|1:				// EQ: Fallthrough to next instruction.
-      dasm_put(Dst, 9208, -BCBIAS_J*4);
-#line 4090 "vm_x86.dasc"
+      dasm_put(Dst, 9211, -BCBIAS_J*4);
+#line 4110 "vm_x86.dasc"
     }
     if (LJ_DUALNUM && (op == BC_ISEQV || op == BC_ISNEV ||
 		       op == BC_ISEQN || op == BC_ISNEN)) {
       //|  jmp <9
-      dasm_put(Dst, 9223);
-#line 4094 "vm_x86.dasc"
+      dasm_put(Dst, 9226);
+#line 4114 "vm_x86.dasc"
     } else {
       //|  ins_next
-      dasm_put(Dst, 9110);
-#line 4096 "vm_x86.dasc"
+      dasm_put(Dst, 9113);
+#line 4116 "vm_x86.dasc"
     }
     //|
     if (op == BC_ISEQV || op == BC_ISNEV) {
@@ -5471,45 +5491,45 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
       //|  // Different tables or userdatas. Need to check __eq metamethod.
       //|  // Field metatable must be at same offset for GCtab and GCudata!
       //|  mov TAB:RB, TAB:RA->metatable
-      dasm_put(Dst, 9228, LJ_TCDATA, LJ_TCDATA, LJ_TISPRI, LJ_TISTABUD, LJ_TUDATA);
-#line 4124 "vm_x86.dasc"
+      dasm_put(Dst, 9231, LJ_TCDATA, LJ_TCDATA, LJ_TISPRI, LJ_TISTABUD, LJ_TUDATA);
+#line 4144 "vm_x86.dasc"
       //|  test TAB:RB, TAB:RB
       //|  jz <2				// No metatable?
       //|  test byte TAB:RB->nomm, 1<<MM_eq
       //|  jnz <2				// Or 'no __eq' flag set?
-      dasm_put(Dst, 9293, Dt6(->metatable), Dt6(->nomm), 1<<MM_eq);
-#line 4128 "vm_x86.dasc"
+      dasm_put(Dst, 9296, Dt6(->metatable), Dt6(->nomm), 1<<MM_eq);
+#line 4148 "vm_x86.dasc"
       if (vk) {
 	//|  xor RB, RB			// ne = 0
-	dasm_put(Dst, 9313);
-#line 4130 "vm_x86.dasc"
+	dasm_put(Dst, 9316);
+#line 4150 "vm_x86.dasc"
       } else {
 	//|  mov RB, 1			// ne = 1
-	dasm_put(Dst, 9317);
-#line 4132 "vm_x86.dasc"
+	dasm_put(Dst, 9320);
+#line 4152 "vm_x86.dasc"
       }
       //|  jmp ->vmeta_equal		// Handle __eq metamethod.
-      dasm_put(Dst, 9323);
-#line 4134 "vm_x86.dasc"
+      dasm_put(Dst, 9326);
+#line 4154 "vm_x86.dasc"
     } else {
       //|.if FFI
       //|3:
       //|  cmp RB, LJ_TCDATA
-      dasm_put(Dst, 9328, LJ_TCDATA);
-#line 4138 "vm_x86.dasc"
+      dasm_put(Dst, 9331, LJ_TCDATA);
+#line 4158 "vm_x86.dasc"
       if (LJ_DUALNUM && vk) {
 	//|  jne <9
-	dasm_put(Dst, 9335);
-#line 4140 "vm_x86.dasc"
+	dasm_put(Dst, 9338);
+#line 4160 "vm_x86.dasc"
       } else {
 	//|  jne <2
-	dasm_put(Dst, 9308);
-#line 4142 "vm_x86.dasc"
+	dasm_put(Dst, 9311);
+#line 4162 "vm_x86.dasc"
       }
       //|  jmp ->vmeta_equal_cd
       //|.endif
-      dasm_put(Dst, 9340);
-#line 4145 "vm_x86.dasc"
+      dasm_put(Dst, 9343);
+#line 4165 "vm_x86.dasc"
     }
     break;
   case BC_ISEQS: case BC_ISNES:
@@ -5520,17 +5540,17 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  cmp RB, LJ_TSTR; jne >3
     //|  mov RA, [BASE+RA*8]
     //|  cmp RA, [KBASE+RD*4]
-    dasm_put(Dst, 9345, LJ_TSTR);
-#line 4155 "vm_x86.dasc"
+    dasm_put(Dst, 9348, LJ_TSTR);
+#line 4175 "vm_x86.dasc"
   iseqne_test:
     if (vk) {
       //|  jne >2
-      dasm_put(Dst, 9179);
-#line 4158 "vm_x86.dasc"
+      dasm_put(Dst, 9182);
+#line 4178 "vm_x86.dasc"
     } else {
       //|  je >1
-      dasm_put(Dst, 7791);
-#line 4160 "vm_x86.dasc"
+      dasm_put(Dst, 7794);
+#line 4180 "vm_x86.dasc"
     }
     goto iseqne_end;
   case BC_ISEQN: case BC_ISNEN:
@@ -5543,8 +5563,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  cmp dword [KBASE+RD*8+4], LJ_TISNUM; jne >8
     //|  mov RB, dword [KBASE+RD*8]
     //|  cmp RB, dword [BASE+RA*8]
-    dasm_put(Dst, 9372);
-#line 4172 "vm_x86.dasc"
+    dasm_put(Dst, 9375);
+#line 4192 "vm_x86.dasc"
     if (vk) {
       //|  jne >9
     } else {
@@ -5593,8 +5613,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|4:
     //|  fcomparepp
     //|.endif
-    dasm_put(Dst, 9380, LJ_TISNUM);
-#line 4220 "vm_x86.dasc"
+    dasm_put(Dst, 9383, LJ_TISNUM);
+#line 4240 "vm_x86.dasc"
     goto iseqne_fp;
   case BC_ISEQP: case BC_ISNEP:
     vk = op == BC_ISEQP;
@@ -5602,8 +5622,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov RB, [BASE+RA*8+4]
     //|  add PC, 4
     //|  cmp RB, RD
-    dasm_put(Dst, 9407);
-#line 4227 "vm_x86.dasc"
+    dasm_put(Dst, 9410);
+#line 4247 "vm_x86.dasc"
     if (!LJ_HASFFI) goto iseqne_test;
     if (vk) {
       //|  jne >3
@@ -5614,8 +5634,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
       //|3:
       //|  cmp RB, LJ_TCDATA; jne <2
       //|  jmp ->vmeta_equal_cd
-      dasm_put(Dst, 9421, -BCBIAS_J*4, LJ_TCDATA);
-#line 4237 "vm_x86.dasc"
+      dasm_put(Dst, 9424, -BCBIAS_J*4, LJ_TCDATA);
+#line 4257 "vm_x86.dasc"
     } else {
       //|  je >2
       //|  cmp RB, LJ_TCDATA; je ->vmeta_equal_cd
@@ -5623,8 +5643,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
       //|  branchPC RD
       //|2:
       //|  ins_next
-      dasm_put(Dst, 9472, LJ_TCDATA, -BCBIAS_J*4);
-#line 4244 "vm_x86.dasc"
+      dasm_put(Dst, 9475, LJ_TCDATA, -BCBIAS_J*4);
+#line 4264 "vm_x86.dasc"
     }
     break;
 
@@ -5635,30 +5655,30 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov RB, [BASE+RD*8+4]
     //|  add PC, 4
     //|  cmp RB, LJ_TISTRUECOND
-    dasm_put(Dst, 9517, LJ_TISTRUECOND);
-#line 4254 "vm_x86.dasc"
+    dasm_put(Dst, 9520, LJ_TISTRUECOND);
+#line 4274 "vm_x86.dasc"
     if (op == BC_IST || op == BC_ISTC) {
       //|  jae >1
-      dasm_put(Dst, 9093);
-#line 4256 "vm_x86.dasc"
+      dasm_put(Dst, 9096);
+#line 4276 "vm_x86.dasc"
     } else {
       //|  jb >1
-      dasm_put(Dst, 9088);
-#line 4258 "vm_x86.dasc"
+      dasm_put(Dst, 9091);
+#line 4278 "vm_x86.dasc"
     }
     if (op == BC_ISTC || op == BC_ISFC) {
       //|  mov [BASE+RA*8+4], RB
       //|  mov RB, [BASE+RD*8]
       //|  mov [BASE+RA*8], RB
-      dasm_put(Dst, 9529);
-#line 4263 "vm_x86.dasc"
+      dasm_put(Dst, 9532);
+#line 4283 "vm_x86.dasc"
     }
     //|  movzx RD, PC_RD
     //|  branchPC RD
     //|1:					// Fallthrough to the next instruction.
     //|  ins_next
-    dasm_put(Dst, 9098, -BCBIAS_J*4);
-#line 4268 "vm_x86.dasc"
+    dasm_put(Dst, 9101, -BCBIAS_J*4);
+#line 4288 "vm_x86.dasc"
     break;
 
   /* -- Unary ops --------------------------------------------------------- */
@@ -5675,8 +5695,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov [BASE+RA*8], RD
     //|.endif
     //|  ins_next_
-    dasm_put(Dst, 9540);
-#line 4284 "vm_x86.dasc"
+    dasm_put(Dst, 9543);
+#line 4304 "vm_x86.dasc"
     break;
   case BC_NOT:
     //|  ins_AD	// RA = dst, RD = src
@@ -5685,8 +5705,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  adc RB, LJ_TTRUE
     //|  mov [BASE+RA*8+4], RB
     //|  ins_next
-    dasm_put(Dst, 9569, LJ_TISTRUECOND, LJ_TTRUE);
-#line 4292 "vm_x86.dasc"
+    dasm_put(Dst, 9572, LJ_TISTRUECOND, LJ_TTRUE);
+#line 4312 "vm_x86.dasc"
     break;
   case BC_UNM:
     //|  ins_AD	// RA = dst, RD = src
@@ -5723,8 +5743,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|.else
     //|  ins_next
     //|.endif
-    dasm_put(Dst, 9606, LJ_TISNUM, (unsigned int)(U64x(80000000,00000000)), (unsigned int)((U64x(80000000,00000000))>>32));
-#line 4328 "vm_x86.dasc"
+    dasm_put(Dst, 9609, LJ_TISNUM, (unsigned int)(U64x(80000000,00000000)), (unsigned int)((U64x(80000000,00000000))>>32));
+#line 4348 "vm_x86.dasc"
     break;
   case BC_LEN:
     //|  ins_AD	// RA = dst, RD = src
@@ -5749,15 +5769,15 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|2:
     //|  checktab RD, ->vmeta_len
     //|  mov TAB:FCARG1, [BASE+RD*8]
-    dasm_put(Dst, 9661, LJ_TSTR, Dt5(->len), LJ_TTAB);
-#line 4352 "vm_x86.dasc"
+    dasm_put(Dst, 9664, LJ_TSTR, Dt5(->len), LJ_TTAB);
+#line 4372 "vm_x86.dasc"
 #if LJ_52
     //|  mov TAB:RB, TAB:FCARG1->metatable
     //|  cmp TAB:RB, 0
     //|  jnz >9
     //|3:
-    dasm_put(Dst, 9727, Dt6(->metatable));
-#line 4357 "vm_x86.dasc"
+    dasm_put(Dst, 9730, Dt6(->metatable));
+#line 4377 "vm_x86.dasc"
 #endif
     //|->BC_LEN_Z:
     //|  mov RB, BASE			// Save BASE.
@@ -5774,15 +5794,15 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov BASE, RB			// Restore BASE.
     //|  movzx RA, PC_RA
     //|  jmp <1
-    dasm_put(Dst, 9741);
-#line 4373 "vm_x86.dasc"
+    dasm_put(Dst, 9744);
+#line 4393 "vm_x86.dasc"
 #if LJ_52
     //|9:  // Check for __len.
     //|  test byte TAB:RB->nomm, 1<<MM_len
     //|  jnz <3
     //|  jmp ->vmeta_len			// 'no __len' flag NOT set: check.
-    dasm_put(Dst, 9767, Dt6(->nomm), 1<<MM_len);
-#line 4378 "vm_x86.dasc"
+    dasm_put(Dst, 9770, Dt6(->nomm), 1<<MM_len);
+#line 4398 "vm_x86.dasc"
 #endif
     break;
 
@@ -5889,140 +5909,140 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  // RA = dst, RB = src1 or num const, RC = src2 or num const
   case BC_ADDVN: case BC_ADDNV: case BC_ADDVV:
     //|  ins_arith add, fadd, addsd
-    dasm_put(Dst, 9783);
+    dasm_put(Dst, 9786);
     vk = ((int)op - BC_ADDVN) / (BC_ADDNV-BC_ADDVN);
     switch (vk) {
     case 0:
-    dasm_put(Dst, 9791, LJ_TISNUM);
+    dasm_put(Dst, 9794, LJ_TISNUM);
       break;
     case 1:
-    dasm_put(Dst, 9817, LJ_TISNUM);
+    dasm_put(Dst, 9820, LJ_TISNUM);
       break;
     default:
-    dasm_put(Dst, 9843, LJ_TISNUM, LJ_TISNUM);
+    dasm_put(Dst, 9846, LJ_TISNUM, LJ_TISNUM);
       break;
     }
-    dasm_put(Dst, 9634);
-#line 4484 "vm_x86.dasc"
+    dasm_put(Dst, 9637);
+#line 4504 "vm_x86.dasc"
     break;
   case BC_SUBVN: case BC_SUBNV: case BC_SUBVV:
     //|  ins_arith sub, fsub, subsd
-    dasm_put(Dst, 9783);
+    dasm_put(Dst, 9786);
     vk = ((int)op - BC_ADDVN) / (BC_ADDNV-BC_ADDVN);
     switch (vk) {
     case 0:
-    dasm_put(Dst, 9878, LJ_TISNUM);
+    dasm_put(Dst, 9881, LJ_TISNUM);
       break;
     case 1:
-    dasm_put(Dst, 9904, LJ_TISNUM);
+    dasm_put(Dst, 9907, LJ_TISNUM);
       break;
     default:
-    dasm_put(Dst, 9930, LJ_TISNUM, LJ_TISNUM);
+    dasm_put(Dst, 9933, LJ_TISNUM, LJ_TISNUM);
       break;
     }
-    dasm_put(Dst, 9634);
-#line 4487 "vm_x86.dasc"
+    dasm_put(Dst, 9637);
+#line 4507 "vm_x86.dasc"
     break;
   case BC_MULVN: case BC_MULNV: case BC_MULVV:
     //|  ins_arith imul, fmul, mulsd
-    dasm_put(Dst, 9783);
+    dasm_put(Dst, 9786);
     vk = ((int)op - BC_ADDVN) / (BC_ADDNV-BC_ADDVN);
     switch (vk) {
     case 0:
-    dasm_put(Dst, 9965, LJ_TISNUM);
+    dasm_put(Dst, 9968, LJ_TISNUM);
       break;
     case 1:
-    dasm_put(Dst, 9991, LJ_TISNUM);
+    dasm_put(Dst, 9994, LJ_TISNUM);
       break;
     default:
-    dasm_put(Dst, 10017, LJ_TISNUM, LJ_TISNUM);
+    dasm_put(Dst, 10020, LJ_TISNUM, LJ_TISNUM);
       break;
     }
-    dasm_put(Dst, 9634);
-#line 4490 "vm_x86.dasc"
+    dasm_put(Dst, 9637);
+#line 4510 "vm_x86.dasc"
     break;
   case BC_DIVVN: case BC_DIVNV: case BC_DIVVV:
     //|  ins_arith fdiv, divsd
-    dasm_put(Dst, 9783);
+    dasm_put(Dst, 9786);
     vk = ((int)op - BC_ADDVN) / (BC_ADDNV-BC_ADDVN);
     switch (vk) {
     case 0:
-    dasm_put(Dst, 10052, LJ_TISNUM);
+    dasm_put(Dst, 10055, LJ_TISNUM);
       break;
     case 1:
-    dasm_put(Dst, 10078, LJ_TISNUM);
+    dasm_put(Dst, 10081, LJ_TISNUM);
       break;
     default:
-    dasm_put(Dst, 10104, LJ_TISNUM, LJ_TISNUM);
+    dasm_put(Dst, 10107, LJ_TISNUM, LJ_TISNUM);
       break;
     }
-    dasm_put(Dst, 9634);
-#line 4493 "vm_x86.dasc"
+    dasm_put(Dst, 9637);
+#line 4513 "vm_x86.dasc"
     break;
   case BC_MODVN:
     //|  ins_arithpre fld, movsd, xmm1
-    dasm_put(Dst, 9783);
+    dasm_put(Dst, 9786);
     vk = ((int)op - BC_ADDVN) / (BC_ADDNV-BC_ADDVN);
     switch (vk) {
     case 0:
-    dasm_put(Dst, 10139, LJ_TISNUM);
+    dasm_put(Dst, 10142, LJ_TISNUM);
       break;
     case 1:
-    dasm_put(Dst, 10165, LJ_TISNUM);
+    dasm_put(Dst, 10168, LJ_TISNUM);
       break;
     default:
-    dasm_put(Dst, 10191, LJ_TISNUM, LJ_TISNUM);
+    dasm_put(Dst, 10194, LJ_TISNUM, LJ_TISNUM);
       break;
     }
-#line 4496 "vm_x86.dasc"
+#line 4516 "vm_x86.dasc"
     //|->BC_MODVN_Z:
     //|  call ->vm_mod
     //|  ins_arithpost
     //|  ins_next
-    dasm_put(Dst, 10226);
-#line 4500 "vm_x86.dasc"
+    dasm_put(Dst, 10229);
+#line 4520 "vm_x86.dasc"
     break;
   case BC_MODNV: case BC_MODVV:
     //|  ins_arithpre fld, movsd, xmm1
-    dasm_put(Dst, 9783);
+    dasm_put(Dst, 9786);
     vk = ((int)op - BC_ADDVN) / (BC_ADDNV-BC_ADDVN);
     switch (vk) {
     case 0:
-    dasm_put(Dst, 10139, LJ_TISNUM);
+    dasm_put(Dst, 10142, LJ_TISNUM);
       break;
     case 1:
-    dasm_put(Dst, 10165, LJ_TISNUM);
+    dasm_put(Dst, 10168, LJ_TISNUM);
       break;
     default:
-    dasm_put(Dst, 10191, LJ_TISNUM, LJ_TISNUM);
+    dasm_put(Dst, 10194, LJ_TISNUM, LJ_TISNUM);
       break;
     }
-#line 4503 "vm_x86.dasc"
+#line 4523 "vm_x86.dasc"
     //|  jmp ->BC_MODVN_Z			// Avoid 3 copies. It's slow anyway.
-    dasm_put(Dst, 10258);
-#line 4504 "vm_x86.dasc"
+    dasm_put(Dst, 10261);
+#line 4524 "vm_x86.dasc"
     break;
   case BC_POW:
     //|  ins_arithpre fld, movsd, xmm1
-    dasm_put(Dst, 9783);
+    dasm_put(Dst, 9786);
     vk = ((int)op - BC_ADDVN) / (BC_ADDNV-BC_ADDVN);
     switch (vk) {
     case 0:
-    dasm_put(Dst, 10139, LJ_TISNUM);
+    dasm_put(Dst, 10142, LJ_TISNUM);
       break;
     case 1:
-    dasm_put(Dst, 10165, LJ_TISNUM);
+    dasm_put(Dst, 10168, LJ_TISNUM);
       break;
     default:
-    dasm_put(Dst, 10191, LJ_TISNUM, LJ_TISNUM);
+    dasm_put(Dst, 10194, LJ_TISNUM, LJ_TISNUM);
       break;
     }
-#line 4507 "vm_x86.dasc"
+#line 4527 "vm_x86.dasc"
     //|  call ->vm_pow
     //|  ins_arithpost
     //|  ins_next
-    dasm_put(Dst, 10263);
-#line 4510 "vm_x86.dasc"
+    dasm_put(Dst, 10266);
+#line 4530 "vm_x86.dasc"
     break;
 
   case BC_CAT:
@@ -6063,8 +6083,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov [BASE+RA*8], RB
     //|.endif
     //|  ins_next
-    dasm_put(Dst, 10293, Dt1(->base), Dt1(->base));
-#line 4550 "vm_x86.dasc"
+    dasm_put(Dst, 10296, Dt1(->base), Dt1(->base));
+#line 4570 "vm_x86.dasc"
     break;
 
   /* -- Constant ops ------------------------------------------------------ */
@@ -6075,8 +6095,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov dword [BASE+RA*8+4], LJ_TSTR
     //|  mov [BASE+RA*8], RD
     //|  ins_next
-    dasm_put(Dst, 10377, LJ_TSTR);
-#line 4560 "vm_x86.dasc"
+    dasm_put(Dst, 10380, LJ_TSTR);
+#line 4580 "vm_x86.dasc"
     break;
   case BC_KCDATA:
     //|.if FFI
@@ -6086,8 +6106,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov [BASE+RA*8], RD
     //|  ins_next
     //|.endif
-    dasm_put(Dst, 10377, LJ_TCDATA);
-#line 4569 "vm_x86.dasc"
+    dasm_put(Dst, 10380, LJ_TCDATA);
+#line 4589 "vm_x86.dasc"
     break;
   case BC_KSHORT:
     //|  ins_AD	// RA = dst, RD = signed int16 literal
@@ -6104,8 +6124,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  fstp qword [BASE+RA*8]
     //|.endif
     //|  ins_next
-    dasm_put(Dst, 10414);
-#line 4585 "vm_x86.dasc"
+    dasm_put(Dst, 10417);
+#line 4605 "vm_x86.dasc"
     break;
   case BC_KNUM:
     //|  ins_AD	// RA = dst, RD = num const
@@ -6117,15 +6137,15 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  fstp qword [BASE+RA*8]
     //|.endif
     //|  ins_next
-    dasm_put(Dst, 10449);
-#line 4596 "vm_x86.dasc"
+    dasm_put(Dst, 10452);
+#line 4616 "vm_x86.dasc"
     break;
   case BC_KPRI:
     //|  ins_AND	// RA = dst, RD = primitive type (~)
     //|  mov [BASE+RA*8+4], RD
     //|  ins_next
-    dasm_put(Dst, 10483);
-#line 4601 "vm_x86.dasc"
+    dasm_put(Dst, 10486);
+#line 4621 "vm_x86.dasc"
     break;
   case BC_KNIL:
     //|  ins_AD	// RA = dst_start, RD = dst_end
@@ -6139,8 +6159,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  cmp RA, RD
     //|  jbe <1
     //|  ins_next
-    dasm_put(Dst, 10512, LJ_TNIL);
-#line 4614 "vm_x86.dasc"
+    dasm_put(Dst, 10515, LJ_TNIL);
+#line 4634 "vm_x86.dasc"
     break;
 
   /* -- Upvalue and function ops ------------------------------------------ */
@@ -6160,8 +6180,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov [BASE+RA*8], RB
     //|.endif
     //|  ins_next
-    dasm_put(Dst, 10560, offsetof(GCfuncL, uvptr), DtA(->v));
-#line 4633 "vm_x86.dasc"
+    dasm_put(Dst, 10563, offsetof(GCfuncL, uvptr), DtA(->v));
+#line 4653 "vm_x86.dasc"
     break;
   case BC_USETV:
 #define TV2MARKOFS \
@@ -6197,12 +6217,12 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|.endif
     //|  lea GL:FCARG1, [DISPATCH+GG_DISP2G]
     //|  call extern lj_gc_barrieruv@8	// (global_State *g, TValue *tv)
-    dasm_put(Dst, 10601, offsetof(GCfuncL, uvptr), DtA(->closed), DtA(->v), TV2MARKOFS, LJ_GC_BLACK, LJ_TISGCV, LJ_TNUMX - LJ_TISGCV, Dt4(->gch.marked), LJ_GC_WHITES, GG_DISP2G);
-#line 4668 "vm_x86.dasc"
+    dasm_put(Dst, 10604, offsetof(GCfuncL, uvptr), DtA(->closed), DtA(->v), TV2MARKOFS, LJ_GC_BLACK, LJ_TISGCV, LJ_TNUMX - LJ_TISGCV, Dt4(->gch.marked), LJ_GC_WHITES, GG_DISP2G);
+#line 4688 "vm_x86.dasc"
     //|  mov BASE, RB			// Restore BASE.
     //|  jmp <1
-    dasm_put(Dst, 10697);
-#line 4670 "vm_x86.dasc"
+    dasm_put(Dst, 10700);
+#line 4690 "vm_x86.dasc"
     break;
 #undef TV2MARKOFS
   case BC_USETS:
@@ -6230,8 +6250,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  call extern lj_gc_barrieruv@8	// (global_State *g, TValue *tv)
     //|  mov BASE, RB			// Restore BASE.
     //|  jmp <1
-    dasm_put(Dst, 10709, offsetof(GCfuncL, uvptr), DtA(->v), LJ_TSTR, DtA(->marked), LJ_GC_BLACK, Dt4(->gch.marked), LJ_GC_WHITES, DtA(->closed), GG_DISP2G);
-#line 4697 "vm_x86.dasc"
+    dasm_put(Dst, 10712, offsetof(GCfuncL, uvptr), DtA(->v), LJ_TSTR, DtA(->marked), LJ_GC_BLACK, Dt4(->gch.marked), LJ_GC_WHITES, DtA(->closed), GG_DISP2G);
+#line 4717 "vm_x86.dasc"
     break;
   case BC_USETN:
     //|  ins_AD	// RA = upvalue #, RD = num const
@@ -6249,8 +6269,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  fstp qword [RA]
     //|.endif
     //|  ins_next
-    dasm_put(Dst, 10805, offsetof(GCfuncL, uvptr), DtA(->v));
-#line 4714 "vm_x86.dasc"
+    dasm_put(Dst, 10808, offsetof(GCfuncL, uvptr), DtA(->v));
+#line 4734 "vm_x86.dasc"
     break;
   case BC_USETP:
     //|  ins_AND	// RA = upvalue #, RD = primitive type (~)
@@ -6259,8 +6279,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov RA, UPVAL:RB->v
     //|  mov [RA+4], RD
     //|  ins_next
-    dasm_put(Dst, 10850, offsetof(GCfuncL, uvptr), DtA(->v));
-#line 4722 "vm_x86.dasc"
+    dasm_put(Dst, 10853, offsetof(GCfuncL, uvptr), DtA(->v));
+#line 4742 "vm_x86.dasc"
     break;
   case BC_UCLO:
     //|  ins_AD	// RA = level, RD = target
@@ -6275,8 +6295,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov BASE, L:RB->base
     //|1:
     //|  ins_next
-    dasm_put(Dst, 10890, -BCBIAS_J*4, Dt1(->openupval), Dt1(->base), Dt1(->base));
-#line 4736 "vm_x86.dasc"
+    dasm_put(Dst, 10893, -BCBIAS_J*4, Dt1(->openupval), Dt1(->base), Dt1(->base));
+#line 4756 "vm_x86.dasc"
     break;
 
   case BC_FNEW:
@@ -6305,8 +6325,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov [BASE+RA*8], LFUNC:RC
     //|  mov dword [BASE+RA*8+4], LJ_TFUNC
     //|  ins_next
-    dasm_put(Dst, 10946, Dt1(->base), Dt1(->base), LJ_TFUNC);
-#line 4764 "vm_x86.dasc"
+    dasm_put(Dst, 10949, Dt1(->base), Dt1(->base), LJ_TFUNC);
+#line 4784 "vm_x86.dasc"
     break;
 
   /* -- Table ops --------------------------------------------------------- */
@@ -6355,8 +6375,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  call extern lj_gc_step_fixtop@4	// (lua_State *L)
     //|  movzx RD, PC_RD
     //|  jmp <1
-    dasm_put(Dst, 11013, Dt1(->base), DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), Dt1(->base), LJ_TTAB);
-#line 4812 "vm_x86.dasc"
+    dasm_put(Dst, 11016, Dt1(->base), DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), Dt1(->base), LJ_TTAB);
+#line 4832 "vm_x86.dasc"
     break;
   case BC_TDUP:
     //|  ins_AND	// RA = dst, RD = table const (~) (holding template table)
@@ -6382,8 +6402,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  movzx RD, PC_RD			// Need to reload RD.
     //|  not RDa
     //|  jmp <2
-    dasm_put(Dst, 11137, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), Dt1(->base), Dt1(->base), LJ_TTAB);
-#line 4837 "vm_x86.dasc"
+    dasm_put(Dst, 11140, DISPATCH_GL(gc.total), DISPATCH_GL(gc.threshold), Dt1(->base), Dt1(->base), LJ_TTAB);
+#line 4857 "vm_x86.dasc"
     break;
 
   case BC_GGET:
@@ -6392,8 +6412,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov TAB:RB, LFUNC:RB->env
     //|  mov STR:RC, [KBASE+RD*4]
     //|  jmp ->BC_TGETS_Z
-    dasm_put(Dst, 11236, Dt7(->env));
-#line 4845 "vm_x86.dasc"
+    dasm_put(Dst, 11239, Dt7(->env));
+#line 4865 "vm_x86.dasc"
     break;
   case BC_GSET:
     //|  ins_AND	// RA = src, RD = str const (~)
@@ -6401,8 +6421,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov TAB:RB, LFUNC:RB->env
     //|  mov STR:RC, [KBASE+RD*4]
     //|  jmp ->BC_TSETS_Z
-    dasm_put(Dst, 11256, Dt7(->env));
-#line 4852 "vm_x86.dasc"
+    dasm_put(Dst, 11259, Dt7(->env));
+#line 4872 "vm_x86.dasc"
     break;
 
   case BC_TGETV:
@@ -6454,8 +6474,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  cmp dword TAB:RB->metatable, 0	// Shouldn't overwrite RA for fastpath.
     //|  jz >3
     //|  mov TAB:RA, TAB:RB->metatable
-    dasm_put(Dst, 11276, LJ_TTAB, LJ_TISNUM, Dt6(->asize), Dt6(->array), LJ_TNIL, Dt6(->metatable));
-#line 4903 "vm_x86.dasc"
+    dasm_put(Dst, 11279, LJ_TTAB, LJ_TISNUM, Dt6(->asize), Dt6(->array), LJ_TNIL, Dt6(->metatable));
+#line 4923 "vm_x86.dasc"
     //|  test byte TAB:RA->nomm, 1<<MM_index
     //|  jz ->vmeta_tgetv			// 'no __index' flag NOT set: check.
     //|  movzx RA, PC_RA			// Restore RA.
@@ -6467,8 +6487,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  checkstr RC, ->vmeta_tgetv
     //|  mov STR:RC, [BASE+RC*8]
     //|  jmp ->BC_TGETS_Z
-    dasm_put(Dst, 11394, Dt6(->metatable), Dt6(->nomm), 1<<MM_index, LJ_TNIL, LJ_TSTR);
-#line 4914 "vm_x86.dasc"
+    dasm_put(Dst, 11397, Dt6(->metatable), Dt6(->nomm), 1<<MM_index, LJ_TNIL, LJ_TSTR);
+#line 4934 "vm_x86.dasc"
     break;
   case BC_TGETS:
     //|  ins_ABC	// RA = dst, RB = table, RC = str const (~)
@@ -6502,8 +6522,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|.endif
     //|2:
     //|  ins_next
-    dasm_put(Dst, 11442, LJ_TTAB, Dt6(->hmask), Dt5(->hash), sizeof(Node), Dt6(->node), DtB(->key.it), LJ_TSTR, DtB(->key.gcr), LJ_TNIL);
-#line 4947 "vm_x86.dasc"
+    dasm_put(Dst, 11445, LJ_TTAB, Dt6(->hmask), Dt5(->hash), sizeof(Node), Dt6(->node), DtB(->key.it), LJ_TSTR, DtB(->key.gcr), LJ_TNIL);
+#line 4967 "vm_x86.dasc"
     //|
     //|3:
     //|  movzx RC, PC_RA
@@ -6523,8 +6543,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  test byte TAB:RA->nomm, 1<<MM_index
     //|  jnz <3				// 'no __index' flag set: done.
     //|  jmp ->vmeta_tgets		// Caveat: preserve STR:RC.
-    dasm_put(Dst, 11527, LJ_TNIL, DtB(->next), Dt6(->metatable), Dt6(->nomm), 1<<MM_index);
-#line 4966 "vm_x86.dasc"
+    dasm_put(Dst, 11530, LJ_TNIL, DtB(->next), Dt6(->metatable), Dt6(->nomm), 1<<MM_index);
+#line 4986 "vm_x86.dasc"
     break;
   case BC_TGETB:
     //|  ins_ABC	// RA = dst, RB = table, RC = byte literal
@@ -6556,13 +6576,13 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  test byte TAB:RA->nomm, 1<<MM_index
     //|  jz ->vmeta_tgetb			// 'no __index' flag NOT set: check.
     //|  movzx RA, PC_RA			// Restore RA.
-    dasm_put(Dst, 11599, LJ_TTAB, Dt6(->asize), Dt6(->array), LJ_TNIL, Dt6(->metatable), Dt6(->metatable), Dt6(->nomm), 1<<MM_index);
-#line 4997 "vm_x86.dasc"
+    dasm_put(Dst, 11602, LJ_TTAB, Dt6(->asize), Dt6(->array), LJ_TNIL, Dt6(->metatable), Dt6(->metatable), Dt6(->nomm), 1<<MM_index);
+#line 5017 "vm_x86.dasc"
     //|3:
     //|  mov dword [BASE+RA*8+4], LJ_TNIL
     //|  jmp <1
-    dasm_put(Dst, 11695, LJ_TNIL);
-#line 5000 "vm_x86.dasc"
+    dasm_put(Dst, 11698, LJ_TNIL);
+#line 5020 "vm_x86.dasc"
     break;
 
   case BC_TSETV:
@@ -6603,8 +6623,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|2:  // Set array slot.
     //|.if X64
     //|  mov RBa, [BASE+RA*8]
-    dasm_put(Dst, 11712, LJ_TTAB, LJ_TISNUM, Dt6(->asize), Dt6(->array), LJ_TNIL, Dt6(->marked), LJ_GC_BLACK);
-#line 5040 "vm_x86.dasc"
+    dasm_put(Dst, 11715, LJ_TTAB, LJ_TISNUM, Dt6(->asize), Dt6(->array), LJ_TNIL, Dt6(->marked), LJ_GC_BLACK);
+#line 5060 "vm_x86.dasc"
     //|  mov [RC], RBa
     //|.else
     //|  mov RB, [BASE+RA*8+4]
@@ -6630,12 +6650,12 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|
     //|7:  // Possible table write barrier for the value. Skip valiswhite check.
     //|  barrierback TAB:RB, RA
-    dasm_put(Dst, 11804, Dt6(->metatable), Dt6(->metatable), Dt6(->nomm), 1<<MM_newindex, LJ_TSTR, Dt6(->marked), (uint8_t)~LJ_GC_BLACK);
-#line 5065 "vm_x86.dasc"
+    dasm_put(Dst, 11807, Dt6(->metatable), Dt6(->metatable), Dt6(->nomm), 1<<MM_newindex, LJ_TSTR, Dt6(->marked), (uint8_t)~LJ_GC_BLACK);
+#line 5085 "vm_x86.dasc"
     //|  movzx RA, PC_RA			// Restore RA.
     //|  jmp <2
-    dasm_put(Dst, 11888, DISPATCH_GL(gc.grayagain), DISPATCH_GL(gc.grayagain), Dt6(->gclist));
-#line 5067 "vm_x86.dasc"
+    dasm_put(Dst, 11891, DISPATCH_GL(gc.grayagain), DISPATCH_GL(gc.grayagain), Dt6(->gclist));
+#line 5087 "vm_x86.dasc"
     break;
   case BC_TSETS:
     //|  ins_ABC	// RA = src, RB = table, RC = str const (~)
@@ -6659,8 +6679,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  je >4				// Previous value is nil?
     //|2:
     //|  test byte TAB:RB->marked, LJ_GC_BLACK	// isblack(table)
-    dasm_put(Dst, 11909, LJ_TTAB, Dt6(->hmask), Dt5(->hash), sizeof(Node), Dt6(->nomm), Dt6(->node), DtB(->key.it), LJ_TSTR, DtB(->key.gcr), LJ_TNIL);
-#line 5090 "vm_x86.dasc"
+    dasm_put(Dst, 11912, LJ_TTAB, Dt6(->hmask), Dt5(->hash), sizeof(Node), Dt6(->nomm), Dt6(->node), DtB(->key.it), LJ_TSTR, DtB(->key.gcr), LJ_TNIL);
+#line 5110 "vm_x86.dasc"
     //|  jnz >7
     //|3:  // Set node value.
     //|  movzx RC, PC_RA
@@ -6693,8 +6713,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|
     //|  // But check for __newindex first.
     //|  mov TAB:RA, TAB:RB->metatable
-    dasm_put(Dst, 11986, Dt6(->marked), LJ_GC_BLACK, Dt6(->metatable), Dt6(->metatable), Dt6(->nomm), 1<<MM_newindex, DtB(->next));
-#line 5122 "vm_x86.dasc"
+    dasm_put(Dst, 11989, Dt6(->marked), LJ_GC_BLACK, Dt6(->metatable), Dt6(->metatable), Dt6(->nomm), 1<<MM_newindex, DtB(->next));
+#line 5142 "vm_x86.dasc"
     //|  test TAB:RA, TAB:RA
     //|  jz >6				// No metatable: continue.
     //|  test byte TAB:RA->nomm, 1<<MM_newindex
@@ -6728,8 +6748,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|7:  // Possible table write barrier for the value. Skip valiswhite check.
     //|  barrierback TAB:RB, RC		// Destroys STR:RC.
     //|  jmp <3
-    dasm_put(Dst, 12073, Dt6(->metatable), Dt6(->nomm), 1<<MM_newindex, LJ_TSTR, Dt1(->base), Dt1(->base), Dt6(->marked), (uint8_t)~LJ_GC_BLACK, DISPATCH_GL(gc.grayagain), DISPATCH_GL(gc.grayagain), Dt6(->gclist));
-#line 5155 "vm_x86.dasc"
+    dasm_put(Dst, 12076, Dt6(->metatable), Dt6(->nomm), 1<<MM_newindex, LJ_TSTR, Dt1(->base), Dt1(->base), Dt6(->marked), (uint8_t)~LJ_GC_BLACK, DISPATCH_GL(gc.grayagain), DISPATCH_GL(gc.grayagain), Dt6(->gclist));
+#line 5175 "vm_x86.dasc"
     break;
   case BC_TSETB:
     //|  ins_ABC	// RA = src, RB = table, RC = byte literal
@@ -6760,8 +6780,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  cmp dword TAB:RB->metatable, 0	// Shouldn't overwrite RA for fastpath.
     //|  jz <1
     //|  mov TAB:RA, TAB:RB->metatable
-    dasm_put(Dst, 12165, LJ_TTAB, Dt6(->asize), Dt6(->array), LJ_TNIL, Dt6(->marked), LJ_GC_BLACK, Dt6(->metatable));
-#line 5185 "vm_x86.dasc"
+    dasm_put(Dst, 12168, LJ_TTAB, Dt6(->asize), Dt6(->array), LJ_TNIL, Dt6(->marked), LJ_GC_BLACK, Dt6(->metatable));
+#line 5205 "vm_x86.dasc"
     //|  test byte TAB:RA->nomm, 1<<MM_newindex
     //|  jz ->vmeta_tsetb			// 'no __newindex' flag NOT set: check.
     //|  movzx RA, PC_RA			// Restore RA.
@@ -6771,8 +6791,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  barrierback TAB:RB, RA
     //|  movzx RA, PC_RA			// Restore RA.
     //|  jmp <2
-    dasm_put(Dst, 12260, Dt6(->metatable), Dt6(->nomm), 1<<MM_newindex, Dt6(->marked), (uint8_t)~LJ_GC_BLACK, DISPATCH_GL(gc.grayagain), DISPATCH_GL(gc.grayagain), Dt6(->gclist));
-#line 5194 "vm_x86.dasc"
+    dasm_put(Dst, 12263, Dt6(->metatable), Dt6(->nomm), 1<<MM_newindex, Dt6(->marked), (uint8_t)~LJ_GC_BLACK, DISPATCH_GL(gc.grayagain), DISPATCH_GL(gc.grayagain), Dt6(->gclist));
+#line 5214 "vm_x86.dasc"
     break;
 
   case BC_TSETM:
@@ -6835,39 +6855,39 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|
     //|7:  // Possible table write barrier for any value. Skip valiswhite check.
     //|  barrierback TAB:RB, RD
-    dasm_put(Dst, 12308, Dt6(->marked), LJ_GC_BLACK, Dt6(->asize), Dt6(->array), Dt1(->base), Dt1(->base));
-#line 5256 "vm_x86.dasc"
+    dasm_put(Dst, 12311, Dt6(->marked), LJ_GC_BLACK, Dt6(->asize), Dt6(->array), Dt1(->base), Dt1(->base));
+#line 5276 "vm_x86.dasc"
     //|  jmp <2
-    dasm_put(Dst, 12458, Dt6(->marked), (uint8_t)~LJ_GC_BLACK, DISPATCH_GL(gc.grayagain), DISPATCH_GL(gc.grayagain), Dt6(->gclist));
-#line 5257 "vm_x86.dasc"
+    dasm_put(Dst, 12461, Dt6(->marked), (uint8_t)~LJ_GC_BLACK, DISPATCH_GL(gc.grayagain), DISPATCH_GL(gc.grayagain), Dt6(->gclist));
+#line 5277 "vm_x86.dasc"
     break;
 
   /* -- Calls and vararg handling ----------------------------------------- */
 
   case BC_CALL: case BC_CALLM:
     //|  ins_A_C	// RA = base, (RB = nresults+1,) RC = nargs+1 | extra_nargs
-    dasm_put(Dst, 9787);
-#line 5263 "vm_x86.dasc"
+    dasm_put(Dst, 9790);
+#line 5283 "vm_x86.dasc"
     if (op == BC_CALLM) {
       //|  add NARGS:RD, MULTRES
-      dasm_put(Dst, 12478);
-#line 5265 "vm_x86.dasc"
+      dasm_put(Dst, 12481);
+#line 5285 "vm_x86.dasc"
     }
     //|  cmp dword [BASE+RA*8+4], LJ_TFUNC
     //|  mov LFUNC:RB, [BASE+RA*8]
     //|  jne ->vmeta_call_ra
     //|  lea BASE, [BASE+RA*8+8]
     //|  ins_call
-    dasm_put(Dst, 12483, LJ_TFUNC, Dt7(->pc));
-#line 5271 "vm_x86.dasc"
+    dasm_put(Dst, 12486, LJ_TFUNC, Dt7(->pc));
+#line 5291 "vm_x86.dasc"
     break;
 
   case BC_CALLMT:
     //|  ins_AD	// RA = base, RD = extra_nargs
     //|  add NARGS:RD, MULTRES
     //|  // Fall through. Assumes BC_CALLT follows and ins_AD is a no-op.
-    dasm_put(Dst, 12478);
-#line 5277 "vm_x86.dasc"
+    dasm_put(Dst, 12481);
+#line 5297 "vm_x86.dasc"
     break;
   case BC_CALLT:
     //|  ins_AD	// RA = base, RD = nargs+1
@@ -6911,13 +6931,12 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|
     //|5:  // Tailcall to a fast function.
     //|  test PC, FRAME_TYPE		// Lua frame below?
-    dasm_put(Dst, 12526, LJ_TFUNC, FRAME_TYPE, Dt7(->ffid), Dt7(->pc));
-#line 5320 "vm_x86.dasc"
+    dasm_put(Dst, 12529, LJ_TFUNC, FRAME_TYPE, Dt7(->ffid), Dt7(->pc));
+#line 5340 "vm_x86.dasc"
     //|  jnz <4
     //|  movzx RA, PC_RA
     //|  not RAa
-    //|  lea RA, [BASE+RA*8]
-    //|  mov LFUNC:KBASE, [RA-8]		// Need to prepare KBASE.
+    //|  mov LFUNC:KBASE, [BASE+RA*8-8]	// Need to prepare KBASE.
     //|  mov KBASE, LFUNC:KBASE->pc
     //|  mov KBASE, [KBASE+PC2PROTO(k)]
     //|  jmp <4
@@ -6933,8 +6952,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|8:
     //|  add PC, FRAME_VARG
     //|  jmp <1
-    dasm_put(Dst, 12644, FRAME_TYPE, Dt7(->pc), PC2PROTO(k), FRAME_VARG, FRAME_TYPEP, FRAME_VARG);
-#line 5340 "vm_x86.dasc"
+    dasm_put(Dst, 12647, FRAME_TYPE, Dt7(->pc), PC2PROTO(k), FRAME_VARG, FRAME_TYPEP, FRAME_VARG);
+#line 5359 "vm_x86.dasc"
     break;
 
   case BC_ITERC:
@@ -6964,8 +6983,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  jne ->vmeta_call
     //|  mov BASE, RA
     //|  ins_call
-    dasm_put(Dst, 12718, LJ_TFUNC, 2+1, Dt7(->pc));
-#line 5369 "vm_x86.dasc"
+    dasm_put(Dst, 12719, LJ_TFUNC, 2+1, Dt7(->pc));
+#line 5388 "vm_x86.dasc"
     break;
 
   case BC_ITERN:
@@ -7032,8 +7051,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  cmp RC, TAB:RB->hmask; ja <3	// End of iteration? Branch to ITERL+1.
     //|  imul KBASE, RC, #NODE
     //|  add NODE:KBASE, TAB:RB->node
-    dasm_put(Dst, 12790, Dt6(->asize), Dt6(->array), LJ_TNIL, -BCBIAS_J*4, Dt6(->hmask), sizeof(Node));
-#line 5435 "vm_x86.dasc"
+    dasm_put(Dst, 12791, Dt6(->asize), Dt6(->array), LJ_TNIL, -BCBIAS_J*4, Dt6(->hmask), sizeof(Node));
+#line 5454 "vm_x86.dasc"
     //|  cmp dword NODE:KBASE->val.it, LJ_TNIL; je >7
     //|  lea DISPATCH, [RC+DISPATCH+1]
     //|  // Copy key and value from hash slot.
@@ -7058,8 +7077,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|7:  // Skip holes in hash part.
     //|  add RC, 1
     //|  jmp <6
-    dasm_put(Dst, 12942, Dt6(->node), DtB(->val.it), LJ_TNIL, DtB(->key), DtB(->val));
-#line 5459 "vm_x86.dasc"
+    dasm_put(Dst, 12943, Dt6(->node), DtB(->val.it), LJ_TNIL, DtB(->key), DtB(->val));
+#line 5478 "vm_x86.dasc"
     break;
 
   case BC_ISNEXT:
@@ -7079,8 +7098,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  branchPC RD
     //|  mov byte [PC], BC_ITERC
     //|  jmp <1
-    dasm_put(Dst, 12997, LJ_TFUNC, LJ_TTAB, LJ_TNIL, Dt8(->ffid), FF_next_N, -BCBIAS_J*4, BC_JMP, -BCBIAS_J*4, BC_ITERC);
-#line 5478 "vm_x86.dasc"
+    dasm_put(Dst, 12998, LJ_TFUNC, LJ_TTAB, LJ_TNIL, Dt8(->ffid), FF_next_N, -BCBIAS_J*4, BC_JMP, -BCBIAS_J*4, BC_ITERC);
+#line 5497 "vm_x86.dasc"
     break;
 
   case BC_VARG:
@@ -7137,8 +7156,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|6:  // Copy all vararg slots.
     //|.if X64
     //|  mov RCa, [KBASE-8]
-    dasm_put(Dst, 13110, (8+FRAME_VARG), LJ_TNIL, Dt1(->maxstack));
-#line 5534 "vm_x86.dasc"
+    dasm_put(Dst, 13111, (8+FRAME_VARG), LJ_TNIL, Dt1(->maxstack));
+#line 5553 "vm_x86.dasc"
     //|  add KBASE, 8
     //|  mov [RA], RCa
     //|.else
@@ -7166,8 +7185,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  mov RA, L:RB->top
     //|  add KBASE, BASE
     //|  jmp <6
-    dasm_put(Dst, 13277, Dt1(->base), Dt1(->top), Dt1(->base), Dt1(->top));
-#line 5561 "vm_x86.dasc"
+    dasm_put(Dst, 13278, Dt1(->base), Dt1(->top), Dt1(->base), Dt1(->top));
+#line 5580 "vm_x86.dasc"
     break;
 
   /* -- Returns ----------------------------------------------------------- */
@@ -7176,24 +7195,24 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  ins_AD	// RA = results, RD = extra_nresults
     //|  add RD, MULTRES			// MULTRES >=1, so RD >=1.
     //|  // Fall through. Assumes BC_RET follows and ins_AD is a no-op.
-    dasm_put(Dst, 12478);
-#line 5569 "vm_x86.dasc"
+    dasm_put(Dst, 12481);
+#line 5588 "vm_x86.dasc"
     break;
 
   case BC_RET: case BC_RET0: case BC_RET1:
     //|  ins_AD	// RA = results, RD = nresults+1
     if (op != BC_RET0) {
       //|  shl RA, 3
-      dasm_put(Dst, 13347);
-#line 5575 "vm_x86.dasc"
+      dasm_put(Dst, 13348);
+#line 5594 "vm_x86.dasc"
     }
     //|1:
     //|  mov PC, [BASE-4]
     //|  mov MULTRES, RD			// Save nresults+1.
     //|  test PC, FRAME_TYPE		// Check frame type marker.
     //|  jnz >7				// Not returning to a fixarg Lua func?
-    dasm_put(Dst, 13351, FRAME_TYPE);
-#line 5581 "vm_x86.dasc"
+    dasm_put(Dst, 13352, FRAME_TYPE);
+#line 5600 "vm_x86.dasc"
     switch (op) {
     case BC_RET:
       //|->BC_RET_Z:
@@ -7219,8 +7238,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
       //|5:
       //|  cmp RB, RD			// More results expected?
       //|  ja >6
-      dasm_put(Dst, 13370);
-#line 5606 "vm_x86.dasc"
+      dasm_put(Dst, 13371);
+#line 5625 "vm_x86.dasc"
       break;
     case BC_RET1:
       //|.if X64
@@ -7232,15 +7251,15 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
       //|  mov RB, [BASE+RA]
       //|  mov [BASE-8], RB
       //|.endif
-      dasm_put(Dst, 13424);
-#line 5617 "vm_x86.dasc"
+      dasm_put(Dst, 13425);
+#line 5636 "vm_x86.dasc"
       /* fallthrough */
     case BC_RET0:
       //|5:
       //|  cmp PC_RB, RDL			// More results expected?
       //|  ja >6
-      dasm_put(Dst, 13434);
-#line 5622 "vm_x86.dasc"
+      dasm_put(Dst, 13435);
+#line 5641 "vm_x86.dasc"
     default:
       break;
     }
@@ -7253,17 +7272,17 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  ins_next
     //|
     //|6:  // Fill up results with nil.
-    dasm_put(Dst, 13445, Dt7(->pc), PC2PROTO(k));
-#line 5634 "vm_x86.dasc"
+    dasm_put(Dst, 13446, Dt7(->pc), PC2PROTO(k));
+#line 5653 "vm_x86.dasc"
     if (op == BC_RET) {
       //|  mov dword [KBASE-4], LJ_TNIL	// Note: relies on shifted base.
       //|  add KBASE, 8
-      dasm_put(Dst, 13493, LJ_TNIL);
-#line 5637 "vm_x86.dasc"
+      dasm_put(Dst, 13494, LJ_TNIL);
+#line 5656 "vm_x86.dasc"
     } else {
       //|  mov dword [BASE+RD*8-12], LJ_TNIL
-      dasm_put(Dst, 13504, LJ_TNIL);
-#line 5639 "vm_x86.dasc"
+      dasm_put(Dst, 13505, LJ_TNIL);
+#line 5658 "vm_x86.dasc"
     }
     //|  add RD, 1
     //|  jmp <5
@@ -7274,16 +7293,16 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  jnz ->vm_return
     //|  // Return from vararg function: relocate BASE down and RA up.
     //|  sub BASE, RB
-    dasm_put(Dst, 13511, -FRAME_VARG, FRAME_TYPEP);
-#line 5649 "vm_x86.dasc"
+    dasm_put(Dst, 13512, -FRAME_VARG, FRAME_TYPEP);
+#line 5668 "vm_x86.dasc"
     if (op != BC_RET0) {
       //|  add RA, RB
-      dasm_put(Dst, 13535);
-#line 5651 "vm_x86.dasc"
+      dasm_put(Dst, 13536);
+#line 5670 "vm_x86.dasc"
     }
     //|  jmp <1
-    dasm_put(Dst, 9762);
-#line 5653 "vm_x86.dasc"
+    dasm_put(Dst, 9765);
+#line 5672 "vm_x86.dasc"
     break;
 
   /* -- Loops and branches ------------------------------------------------ */
@@ -7298,8 +7317,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  hotloop RB
     //|.endif
     //| // Fall through. Assumes BC_IFORL follows and ins_AJ is a no-op.
-    dasm_put(Dst, 13539, HOTCOUNT_PCMASK, GG_DISP2HOT, HOTCOUNT_LOOP);
-#line 5667 "vm_x86.dasc"
+    dasm_put(Dst, 13540, HOTCOUNT_PCMASK, GG_DISP2HOT, HOTCOUNT_LOOP);
+#line 5686 "vm_x86.dasc"
     break;
 
   case BC_JFORI:
@@ -7312,148 +7331,148 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     vk = (op == BC_IFORL || op == BC_JFORL);
     //|  ins_AJ	// RA = base, RD = target (after end of loop or start of loop)
     //|  lea RA, [BASE+RA*8]
-    dasm_put(Dst, 13560);
-#line 5679 "vm_x86.dasc"
+    dasm_put(Dst, 13561);
+#line 5698 "vm_x86.dasc"
     if (LJ_DUALNUM) {
       //|  cmp FOR_TIDX, LJ_TISNUM; jne >9
-      dasm_put(Dst, 13564, LJ_TISNUM);
-#line 5681 "vm_x86.dasc"
+      dasm_put(Dst, 13565, LJ_TISNUM);
+#line 5700 "vm_x86.dasc"
       if (!vk) {
 	//|  cmp FOR_TSTOP, LJ_TISNUM; jne ->vmeta_for
 	//|  cmp FOR_TSTEP, LJ_TISNUM; jne ->vmeta_for
 	//|  mov RB, dword FOR_IDX
 	//|  cmp dword FOR_STEP, 0; jl >5
-	dasm_put(Dst, 13574, LJ_TISNUM, LJ_TISNUM);
-#line 5686 "vm_x86.dasc"
+	dasm_put(Dst, 13575, LJ_TISNUM, LJ_TISNUM);
+#line 5705 "vm_x86.dasc"
       } else {
 #ifdef LUA_USE_ASSERT
 	//|  cmp FOR_TSTOP, LJ_TISNUM; jne ->assert_bad_for_arg_type
 	//|  cmp FOR_TSTEP, LJ_TISNUM; jne ->assert_bad_for_arg_type
-	dasm_put(Dst, 13603, LJ_TISNUM, LJ_TISNUM);
-#line 5690 "vm_x86.dasc"
+	dasm_put(Dst, 13604, LJ_TISNUM, LJ_TISNUM);
+#line 5709 "vm_x86.dasc"
 #endif
 	//|  mov RB, dword FOR_STEP
 	//|  test RB, RB; js >5
 	//|  add RB, dword FOR_IDX; jo >1
 	//|  mov dword FOR_IDX, RB
-	dasm_put(Dst, 13622);
-#line 5695 "vm_x86.dasc"
+	dasm_put(Dst, 13623);
+#line 5714 "vm_x86.dasc"
       }
       //|  cmp RB, dword FOR_STOP
       //|  mov FOR_TEXT, LJ_TISNUM
       //|  mov dword FOR_EXT, RB
-      dasm_put(Dst, 13641, LJ_TISNUM);
-#line 5699 "vm_x86.dasc"
+      dasm_put(Dst, 13642, LJ_TISNUM);
+#line 5718 "vm_x86.dasc"
       if (op == BC_FORI) {
 	//|  jle >7
 	//|1:
 	//|6:
 	//|  branchPC RD
-	dasm_put(Dst, 13652, -BCBIAS_J*4);
-#line 5704 "vm_x86.dasc"
+	dasm_put(Dst, 13653, -BCBIAS_J*4);
+#line 5723 "vm_x86.dasc"
       } else if (op == BC_JFORI) {
 	//|  branchPC RD
 	//|  movzx RD, PC_RD
 	//|  jle =>BC_JLOOP
 	//|1:
 	//|6:
-	dasm_put(Dst, 13666, -BCBIAS_J*4, BC_JLOOP);
-#line 5710 "vm_x86.dasc"
+	dasm_put(Dst, 13667, -BCBIAS_J*4, BC_JLOOP);
+#line 5729 "vm_x86.dasc"
       } else if (op == BC_IFORL) {
 	//|  jg >7
 	//|6:
 	//|  branchPC RD
 	//|1:
-	dasm_put(Dst, 13684, -BCBIAS_J*4);
-#line 5715 "vm_x86.dasc"
+	dasm_put(Dst, 13685, -BCBIAS_J*4);
+#line 5734 "vm_x86.dasc"
       } else {
 	//|  jle =>BC_JLOOP
 	//|1:
 	//|6:
-	dasm_put(Dst, 13676, BC_JLOOP);
-#line 5719 "vm_x86.dasc"
+	dasm_put(Dst, 13677, BC_JLOOP);
+#line 5738 "vm_x86.dasc"
       }
       //|7:
       //|  ins_next
       //|
       //|5:  // Invert check for negative step.
-      dasm_put(Dst, 13698);
-#line 5724 "vm_x86.dasc"
+      dasm_put(Dst, 13699);
+#line 5743 "vm_x86.dasc"
       if (vk) {
 	//|  add RB, dword FOR_IDX; jo <1
 	//|  mov dword FOR_IDX, RB
-	dasm_put(Dst, 13723);
-#line 5727 "vm_x86.dasc"
+	dasm_put(Dst, 13724);
+#line 5746 "vm_x86.dasc"
       }
       //|  cmp RB, dword FOR_STOP
       //|  mov FOR_TEXT, LJ_TISNUM
       //|  mov dword FOR_EXT, RB
-      dasm_put(Dst, 13641, LJ_TISNUM);
-#line 5731 "vm_x86.dasc"
+      dasm_put(Dst, 13642, LJ_TISNUM);
+#line 5750 "vm_x86.dasc"
       if (op == BC_FORI) {
 	//|  jge <7
-	dasm_put(Dst, 13732);
-#line 5733 "vm_x86.dasc"
+	dasm_put(Dst, 13733);
+#line 5752 "vm_x86.dasc"
       } else if (op == BC_JFORI) {
 	//|  branchPC RD
 	//|  movzx RD, PC_RD
 	//|  jge =>BC_JLOOP
-	dasm_put(Dst, 13737, -BCBIAS_J*4, BC_JLOOP);
-#line 5737 "vm_x86.dasc"
+	dasm_put(Dst, 13738, -BCBIAS_J*4, BC_JLOOP);
+#line 5756 "vm_x86.dasc"
       } else if (op == BC_IFORL) {
 	//|  jl <7
-	dasm_put(Dst, 13751);
-#line 5739 "vm_x86.dasc"
+	dasm_put(Dst, 13752);
+#line 5758 "vm_x86.dasc"
       } else {
 	//|  jge =>BC_JLOOP
-	dasm_put(Dst, 13747, BC_JLOOP);
-#line 5741 "vm_x86.dasc"
+	dasm_put(Dst, 13748, BC_JLOOP);
+#line 5760 "vm_x86.dasc"
       }
       //|  jmp <6
       //|9:  // Fallback to FP variant.
-      dasm_put(Dst, 13756);
-#line 5744 "vm_x86.dasc"
+      dasm_put(Dst, 13757);
+#line 5763 "vm_x86.dasc"
     } else if (!vk) {
       //|  cmp FOR_TIDX, LJ_TISNUM
-      dasm_put(Dst, 13763, LJ_TISNUM);
-#line 5746 "vm_x86.dasc"
+      dasm_put(Dst, 13764, LJ_TISNUM);
+#line 5765 "vm_x86.dasc"
     }
     if (!vk) {
       //|  jae ->vmeta_for
       //|  cmp FOR_TSTOP, LJ_TISNUM; jae ->vmeta_for
-      dasm_put(Dst, 13769, LJ_TISNUM);
-#line 5750 "vm_x86.dasc"
+      dasm_put(Dst, 13770, LJ_TISNUM);
+#line 5769 "vm_x86.dasc"
     } else {
 #ifdef LUA_USE_ASSERT
       //|  cmp FOR_TSTOP, LJ_TISNUM; jae ->assert_bad_for_arg_type
       //|  cmp FOR_TSTEP, LJ_TISNUM; jae ->assert_bad_for_arg_type
-      dasm_put(Dst, 13783, LJ_TISNUM, LJ_TISNUM);
-#line 5754 "vm_x86.dasc"
+      dasm_put(Dst, 13784, LJ_TISNUM, LJ_TISNUM);
+#line 5773 "vm_x86.dasc"
 #endif
     }
     //|  mov RB, FOR_TSTEP		// Load type/hiword of for step.
-    dasm_put(Dst, 13802);
-#line 5757 "vm_x86.dasc"
+    dasm_put(Dst, 13803);
+#line 5776 "vm_x86.dasc"
     if (!vk) {
       //|  cmp RB, LJ_TISNUM; jae ->vmeta_for
-      dasm_put(Dst, 13806, LJ_TISNUM);
-#line 5759 "vm_x86.dasc"
+      dasm_put(Dst, 13807, LJ_TISNUM);
+#line 5778 "vm_x86.dasc"
     }
     //|.if SSE
     //|  movsd xmm0, qword FOR_IDX
     //|  movsd xmm1, qword FOR_STOP
-    dasm_put(Dst, 13815);
-#line 5763 "vm_x86.dasc"
+    dasm_put(Dst, 13816);
+#line 5782 "vm_x86.dasc"
     if (vk) {
       //|  addsd xmm0, qword FOR_STEP
       //|  movsd qword FOR_IDX, xmm0
       //|  test RB, RB; js >3
-      dasm_put(Dst, 13827);
-#line 5767 "vm_x86.dasc"
+      dasm_put(Dst, 13828);
+#line 5786 "vm_x86.dasc"
     } else {
       //|  jl >3
-      dasm_put(Dst, 13846);
-#line 5769 "vm_x86.dasc"
+      dasm_put(Dst, 13847);
+#line 5788 "vm_x86.dasc"
     }
     //|  ucomisd xmm1, xmm0
     //|1:
@@ -7461,8 +7480,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|.else
     //|  fld qword FOR_STOP
     //|  fld qword FOR_IDX
-    dasm_put(Dst, 13851);
-#line 5776 "vm_x86.dasc"
+    dasm_put(Dst, 13852);
+#line 5795 "vm_x86.dasc"
     if (vk) {
       //|  fadd qword FOR_STEP		// nidx = idx + step
       //|  fst qword FOR_IDX
@@ -7483,14 +7502,14 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
       //|  jnb >2
       //|  branchPC RD
       //|.endif
-      dasm_put(Dst, 13864, -BCBIAS_J*4);
-#line 5796 "vm_x86.dasc"
+      dasm_put(Dst, 13865, -BCBIAS_J*4);
+#line 5815 "vm_x86.dasc"
     } else if (op == BC_JFORI) {
       //|  branchPC RD
       //|  movzx RD, PC_RD
       //|  jnb =>BC_JLOOP
-      dasm_put(Dst, 13874, -BCBIAS_J*4, BC_JLOOP);
-#line 5800 "vm_x86.dasc"
+      dasm_put(Dst, 13875, -BCBIAS_J*4, BC_JLOOP);
+#line 5819 "vm_x86.dasc"
     } else if (op == BC_IFORL) {
       //|.if DUALNUM
       //|  jb <7
@@ -7498,12 +7517,12 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
       //|  jb >2
       //|  branchPC RD
       //|.endif
-      dasm_put(Dst, 13888, -BCBIAS_J*4);
-#line 5807 "vm_x86.dasc"
+      dasm_put(Dst, 13889, -BCBIAS_J*4);
+#line 5826 "vm_x86.dasc"
     } else {
       //|  jnb =>BC_JLOOP
-      dasm_put(Dst, 13884, BC_JLOOP);
-#line 5809 "vm_x86.dasc"
+      dasm_put(Dst, 13885, BC_JLOOP);
+#line 5828 "vm_x86.dasc"
     }
     //|.if DUALNUM
     //|  jmp <6
@@ -7516,8 +7535,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  ucomisd xmm0, xmm1
     //|  jmp <1
     //|.endif
-    dasm_put(Dst, 13898);
-#line 5821 "vm_x86.dasc"
+    dasm_put(Dst, 13899);
+#line 5840 "vm_x86.dasc"
     break;
 
   case BC_ITERL:
@@ -7525,8 +7544,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  hotloop RB
     //|.endif
     //| // Fall through. Assumes BC_IITERL follows and ins_AJ is a no-op.
-    dasm_put(Dst, 13539, HOTCOUNT_PCMASK, GG_DISP2HOT, HOTCOUNT_LOOP);
-#line 5828 "vm_x86.dasc"
+    dasm_put(Dst, 13540, HOTCOUNT_PCMASK, GG_DISP2HOT, HOTCOUNT_LOOP);
+#line 5847 "vm_x86.dasc"
     break;
 
   case BC_JITERL:
@@ -7538,27 +7557,27 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  lea RA, [BASE+RA*8]
     //|  mov RB, [RA+4]
     //|  cmp RB, LJ_TNIL; je >1		// Stop if iterator returned nil.
-    dasm_put(Dst, 13931, LJ_TNIL);
-#line 5839 "vm_x86.dasc"
+    dasm_put(Dst, 13932, LJ_TNIL);
+#line 5858 "vm_x86.dasc"
     if (op == BC_JITERL) {
       //|  mov [RA-4], RB
       //|  mov RB, [RA]
       //|  mov [RA-8], RB
       //|  jmp =>BC_JLOOP
-      dasm_put(Dst, 13946, BC_JLOOP);
-#line 5844 "vm_x86.dasc"
+      dasm_put(Dst, 13947, BC_JLOOP);
+#line 5863 "vm_x86.dasc"
     } else {
       //|  branchPC RD			// Otherwise save control var + branch.
       //|  mov RD, [RA]
       //|  mov [RA-4], RB
       //|  mov [RA-8], RD
-      dasm_put(Dst, 13960, -BCBIAS_J*4);
-#line 5849 "vm_x86.dasc"
+      dasm_put(Dst, 13961, -BCBIAS_J*4);
+#line 5868 "vm_x86.dasc"
     }
     //|1:
     //|  ins_next
-    dasm_put(Dst, 9108);
-#line 5852 "vm_x86.dasc"
+    dasm_put(Dst, 9111);
+#line 5871 "vm_x86.dasc"
     break;
 
   case BC_LOOP:
@@ -7569,15 +7588,15 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  hotloop RB
     //|.endif
     //| // Fall through. Assumes BC_ILOOP follows and ins_A is a no-op.
-    dasm_put(Dst, 13539, HOTCOUNT_PCMASK, GG_DISP2HOT, HOTCOUNT_LOOP);
-#line 5862 "vm_x86.dasc"
+    dasm_put(Dst, 13540, HOTCOUNT_PCMASK, GG_DISP2HOT, HOTCOUNT_LOOP);
+#line 5881 "vm_x86.dasc"
     break;
 
   case BC_ILOOP:
     //|  ins_A	// RA = base, RD = target (loop extent)
     //|  ins_next
-    dasm_put(Dst, 9110);
-#line 5867 "vm_x86.dasc"
+    dasm_put(Dst, 9113);
+#line 5886 "vm_x86.dasc"
     break;
 
   case BC_JLOOP:
@@ -7614,16 +7633,16 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|.endif
     //|  jmp RDa
     //|.endif
-    dasm_put(Dst, 13976, DISPATCH_J(trace), DtD(->mcode), DISPATCH_GL(jit_base), DISPATCH_GL(jit_L));
-#line 5903 "vm_x86.dasc"
+    dasm_put(Dst, 13977, DISPATCH_J(trace), DtD(->mcode), DISPATCH_GL(jit_base), DISPATCH_GL(jit_L));
+#line 5922 "vm_x86.dasc"
     break;
 
   case BC_JMP:
     //|  ins_AJ	// RA = unused, RD = target
     //|  branchPC RD
     //|  ins_next
-    dasm_put(Dst, 14017, -BCBIAS_J*4);
-#line 5909 "vm_x86.dasc"
+    dasm_put(Dst, 14018, -BCBIAS_J*4);
+#line 5928 "vm_x86.dasc"
     break;
 
   /* -- Function headers -------------------------------------------------- */
@@ -7639,8 +7658,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|.if JIT
     //|  hotcall RB
     //|.endif
-    dasm_put(Dst, 14043, HOTCOUNT_PCMASK, GG_DISP2HOT, HOTCOUNT_CALL);
-#line 5924 "vm_x86.dasc"
+    dasm_put(Dst, 14044, HOTCOUNT_PCMASK, GG_DISP2HOT, HOTCOUNT_CALL);
+#line 5943 "vm_x86.dasc"
   case BC_FUNCV:  /* NYI: compiled vararg functions. */
     //| // Fall through. Assumes BC_IFUNCF/BC_IFUNCV follow and ins_AD is a no-op.
     break;
@@ -7660,17 +7679,17 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  cmp NARGS:RD, RA			// Check for missing parameters.
     //|  jbe >3
     //|2:
-    dasm_put(Dst, 14064, -4+PC2PROTO(k), Dt1(->maxstack), -4+PC2PROTO(numparams));
-#line 5943 "vm_x86.dasc"
+    dasm_put(Dst, 14065, -4+PC2PROTO(k), Dt1(->maxstack), -4+PC2PROTO(numparams));
+#line 5962 "vm_x86.dasc"
     if (op == BC_JFUNCF) {
       //|  movzx RD, PC_RD
       //|  jmp =>BC_JLOOP
-      dasm_put(Dst, 14095, BC_JLOOP);
-#line 5946 "vm_x86.dasc"
+      dasm_put(Dst, 14096, BC_JLOOP);
+#line 5965 "vm_x86.dasc"
     } else {
       //|  ins_next
-      dasm_put(Dst, 9110);
-#line 5948 "vm_x86.dasc"
+      dasm_put(Dst, 9113);
+#line 5967 "vm_x86.dasc"
     }
     //|
     //|3:  // Clear missing parameters.
@@ -7679,8 +7698,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  cmp NARGS:RD, RA
     //|  jbe <3
     //|  jmp <2
-    dasm_put(Dst, 14104, LJ_TNIL);
-#line 5956 "vm_x86.dasc"
+    dasm_put(Dst, 14105, LJ_TNIL);
+#line 5975 "vm_x86.dasc"
     break;
 
   case BC_JFUNCV:
@@ -7688,8 +7707,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     break;
 #endif
     //| int3  // NYI: compiled vararg functions
-    dasm_put(Dst, 8673);
-#line 5963 "vm_x86.dasc"
+    dasm_put(Dst, 8676);
+#line 5982 "vm_x86.dasc"
     break;  /* NYI: compiled vararg functions. */
 
   case BC_IFUNCV:
@@ -7721,18 +7740,18 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  sub RB, 1
     //|  jnz <1
     //|2:
-    dasm_put(Dst, 14126, FRAME_VARG, Dt1(->maxstack), -4+PC2PROTO(numparams), LJ_TNIL);
-#line 5994 "vm_x86.dasc"
+    dasm_put(Dst, 14127, FRAME_VARG, Dt1(->maxstack), -4+PC2PROTO(numparams), LJ_TNIL);
+#line 6013 "vm_x86.dasc"
     if (op == BC_JFUNCV) {
       //|  movzx RD, PC_RD
       //|  jmp =>BC_JLOOP
-      dasm_put(Dst, 14095, BC_JLOOP);
-#line 5997 "vm_x86.dasc"
+      dasm_put(Dst, 14096, BC_JLOOP);
+#line 6016 "vm_x86.dasc"
     } else {
       //|  mov KBASE, [PC-4+PC2PROTO(k)]
       //|  ins_next
-      dasm_put(Dst, 14223, -4+PC2PROTO(k));
-#line 6000 "vm_x86.dasc"
+      dasm_put(Dst, 14224, -4+PC2PROTO(k));
+#line 6019 "vm_x86.dasc"
     }
     //|
     //|3:  // Clear missing parameters.
@@ -7741,8 +7760,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  sub RB, 1
     //|  jnz <3
     //|  jmp <2
-    dasm_put(Dst, 14248, LJ_TNIL);
-#line 6008 "vm_x86.dasc"
+    dasm_put(Dst, 14249, LJ_TNIL);
+#line 6027 "vm_x86.dasc"
     break;
 
   case BC_FUNCC:
@@ -7756,16 +7775,16 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  lea RA, [RD+8*LUA_MINSTACK]
     //|  cmp RA, L:RB->maxstack
     //|  mov L:RB->top, RD
-    dasm_put(Dst, 14270, Dt8(->f), Dt1(->base), 8*LUA_MINSTACK, Dt1(->maxstack), Dt1(->top));
-#line 6021 "vm_x86.dasc"
+    dasm_put(Dst, 14271, Dt8(->f), Dt1(->base), 8*LUA_MINSTACK, Dt1(->maxstack), Dt1(->top));
+#line 6040 "vm_x86.dasc"
     if (op == BC_FUNCC) {
       //|.if X64
       //|  mov CARG1d, L:RB			// Caveat: CARG1d may be RA.
       //|.else
       //|  mov ARG1, L:RB
       //|.endif
-      dasm_put(Dst, 14300);
-#line 6027 "vm_x86.dasc"
+      dasm_put(Dst, 14301);
+#line 6046 "vm_x86.dasc"
     } else {
       //|.if X64
       //|  mov CARG2, KBASEa
@@ -7774,22 +7793,22 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
       //|  mov ARG2, KBASEa
       //|  mov ARG1, L:RB
       //|.endif
-      dasm_put(Dst, 14304);
-#line 6035 "vm_x86.dasc"
+      dasm_put(Dst, 14305);
+#line 6054 "vm_x86.dasc"
     }
     //|  ja ->vm_growstack_c		// Need to grow stack.
     //|  set_vmstate C
-    dasm_put(Dst, 14312, DISPATCH_GL(vmstate), ~LJ_VMST_C);
-#line 6038 "vm_x86.dasc"
+    dasm_put(Dst, 14313, DISPATCH_GL(vmstate), ~LJ_VMST_C);
+#line 6057 "vm_x86.dasc"
     if (op == BC_FUNCC) {
       //|  call KBASEa			// (lua_State *L)
-      dasm_put(Dst, 14322);
-#line 6040 "vm_x86.dasc"
+      dasm_put(Dst, 14323);
+#line 6059 "vm_x86.dasc"
     } else {
       //|  // (lua_State *L, lua_CFunction f)
       //|  call aword [DISPATCH+DISPATCH_GL(wrapf)]
-      dasm_put(Dst, 14327, DISPATCH_GL(wrapf));
-#line 6043 "vm_x86.dasc"
+      dasm_put(Dst, 14328, DISPATCH_GL(wrapf));
+#line 6062 "vm_x86.dasc"
     }
     //|  set_vmstate INTERP
     //|  // nresults returned in eax (RD).
@@ -7799,8 +7818,8 @@ static void build_ins(BuildCtx *ctx, BCOp op, int defop)
     //|  add RA, L:RB->top		// RA = (L->top-(L->base+nresults))*8
     //|  mov PC, [BASE-4]			// Fetch PC of caller.
     //|  jmp ->vm_returnc
-    dasm_put(Dst, 14333, DISPATCH_GL(vmstate), ~LJ_VMST_INTERP, Dt1(->base), Dt1(->top));
-#line 6052 "vm_x86.dasc"
+    dasm_put(Dst, 14334, DISPATCH_GL(vmstate), ~LJ_VMST_INTERP, Dt1(->base), Dt1(->top));
+#line 6071 "vm_x86.dasc"
     break;
 
   /* ---------------------------------------------------------------------- */
@@ -7818,8 +7837,8 @@ static int build_backend(BuildCtx *ctx)
   dasm_growpc(Dst, BC__MAX);
   build_subroutines(ctx);
   //|.code_op
-  dasm_put(Dst, 14359);
-#line 6069 "vm_x86.dasc"
+  dasm_put(Dst, 14360);
+#line 6088 "vm_x86.dasc"
   for (op = 0; op < BC__MAX; op++)
     build_ins(ctx, (BCOp)op, op);
   return BC__MAX;
@@ -7870,6 +7889,10 @@ static void emit_asm_debug(BuildCtx *ctx)
 	"\t.byte 0x83\n\t.uleb128 0x3\n"	/* offset rbx */
 	"\t.byte 0x8f\n\t.uleb128 0x4\n"	/* offset r15 */
 	"\t.byte 0x8e\n\t.uleb128 0x5\n"	/* offset r14 */
+#if LJ_NO_UNWIND
+	"\t.byte 0x8d\n\t.uleb128 0x6\n"	/* offset r13 */
+	"\t.byte 0x8c\n\t.uleb128 0x7\n"	/* offset r12 */
+#endif
 #else
 	"\t.long .Lbegin\n"
 	"\t.long %d\n"
@@ -7905,6 +7928,7 @@ static void emit_asm_debug(BuildCtx *ctx)
 	"\t.align " SZPTR "\n"
 	".LEFDE1:\n\n", (int)ctx->codesz - fcofs);
 #endif
+#if !LJ_NO_UNWIND
 #if (defined(__sun__) && defined(__svr4__))
 #if LJ_64
     fprintf(ctx->fp, "\t.section .eh_frame,\"a\",@unwind\n");
@@ -7993,7 +8017,9 @@ static void emit_asm_debug(BuildCtx *ctx)
 	"\t.align " SZPTR "\n"
 	".LEFDE3:\n\n", (int)ctx->codesz - fcofs);
 #endif
+#endif
     break;
+#if !LJ_NO_UNWIND
   /* Mental note: never let Apple design an assembler.
   ** Or a linker. Or a plastic case. But I digress.
   */
@@ -8121,6 +8147,7 @@ static void emit_asm_debug(BuildCtx *ctx)
 #endif
     }
     break;
+#endif
   default:  /* Difficult for other modes. */
     break;
   }

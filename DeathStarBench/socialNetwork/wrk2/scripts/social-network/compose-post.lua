@@ -1,3 +1,5 @@
+package.cpath = package.cpath .. ";/usr/lib64/lua/5.1/?.so"
+
 require "socket"
 math.randomseed(socket.gettime()*1000)
 math.random(); math.random(); math.random()
