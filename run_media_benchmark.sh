@@ -1,12 +1,16 @@
 #!/bin/bash
 
-##################################################
-# Setup
-##################################################
+# This enables perf to run without drivers
+# echo 0>/proc/sys/kernel/perf_event_paranoid
 
-# constants
+##################################################
+# Defaults and script arguments
+##################################################
 # seconds to run workload before and after vtune
-CUSHION=5
+CUSHION=10
+
+# vtune 
+VTUNE_COMMANDS="-collect io -analyze-system"
 RESULT_DIR=/bigtemp/$(logname)
 
 # default arguments
@@ -34,6 +38,9 @@ for var in "$@"; do
   -name=*)
     RESULT_NAME="${var#*=}"
     ;;
+  -vtune-commands=*)
+    VTUNE_COMMANDS="${var#*=}"
+    ;;
   *)
     echo "Run Media Benchmark - Usage:
 sudo ./run_media_benchmark.sh -duration=60 -threads=10 -rate=100  -name=bob"
@@ -47,23 +54,26 @@ if [ -z "${RESULT_NAME}" ]; then
 fi
 
 if [[ ! -d "$RESULT_DIR" ]]; then
-  echo "The result directory ($RESULT_DIR) doesn't yet exist!"
-  exit 1
+  echo "The result directory ($RESULT_DIR) doesn't yet exist, creating it now"
+  mkdir -p "$RESULT_DIR"
 fi
 
-# these don't work, not sure why
+# Ensure writability
 # sudo chmod a+w "$RESULT_DIR"
-# echo 0>/proc/sys/kernel/perf_event_paranoid
 
 
 ##################################################
 # Start Media Services
 ##################################################
 
-cd DeathStarBench/mediaMicroservices || exit 1
+cd DeathStarBench/socialNetwork || exit 1
 echo "[1] Starting services ..."
 sudo docker-compose up -d
-sudo docker-compose logs -f -t >> "$RESULT_DIR/${RESULT_NAME}_application.log" &
+# sudo docker-compose logs -f -t
+
+# wait for containers to all initialize
+sleep $(( $CUSHION * 3 ))
+python3 scripts/init_social_graph.py
 
 
 ##################################################
@@ -77,8 +87,8 @@ cd wrk2
   --connections "$CONNECTIONS" \
   --duration "$((DURATION + (CUSHION * 2)))" \
   --rate "$RATE" \
-  --script ./scripts/media-microservices/compose-review.lua \
-  http://localhost:8080/wrk2-api/review/compose >> "$RESULT_DIR/${RESULT_NAME}_workload.log" &
+  --script ./scripts/social-network/compose-post.lua \
+http://localhost:8080/wrk2-api/post/compose >> "$RESULT_DIR/${RESULT_NAME}_workload.log" &
 cd ..
 
 # Offset data collection
@@ -90,8 +100,7 @@ sleep $CUSHION
 ##################################################
 
 echo "[3] Starting data collection ..."
-sudo vtune -collect memory-access \
-  -analyze-system \
+sudo vtune $VTUNE_COMMANDS \
   -d "$DURATION" \
   -result-dir="$RESULT_DIR/$RESULT_NAME"
 
